@@ -34,20 +34,20 @@ public class RegisterServlet extends HttpServlet {
 			if(userServiceImpl.existUsername(username)) {
 				//If exist
 				//Back to register page
-				request.getRequestDispatcher("pages/user/regist.html").forward(request, response);
+				request.getRequestDispatcher("pages/user/regist.jsp").forward(request, response);
 				System.out.println("username already exists");
 			}else {
 				//If not exist
 				//Go to register success page
 				//use service to save user to database
-				request.getRequestDispatcher("pages/user/regist_success.html").forward(request, response);
+				request.getRequestDispatcher("pages/user/regist_success.jsp").forward(request, response);
 				userServiceImpl.registerUser(new User(null,username,password,email));
 				System.out.println("register successfully");
 			}
 		}else {
 			//If incorrect
 			//Back to register page
-			request.getRequestDispatcher("pages/user/regist.html").forward(request, response);
+			request.getRequestDispatcher("pages/user/regist.jsp").forward(request, response);
 			System.out.println("wrong verification code");
 		}
 		
