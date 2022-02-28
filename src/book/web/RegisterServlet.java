@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
 		//Check if verification code correct
-		if(code.equalsIgnoreCase("abcd")) {
+		if(code.equalsIgnoreCase("abcde")) {
 			//If Correct
 			//Check if username exist
 			if(userServiceImpl.existUsername(username)) {

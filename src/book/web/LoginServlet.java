@@ -29,12 +29,12 @@ public class LoginServlet extends HttpServlet {
 		if(userServiceImpl.login(new User(null, username, password,null))!=null) {
 			//If success
 			//Go to login_success page
-			request.getRequestDispatcher("pages/user/login_success.jsp").forward(request, response);
+			request.getRequestDispatcher("pages/user/login_success.html").forward(request, response);
 			System.out.println("Login successfully");
 		}else {
 			//If failed
 			//Back to login page
-			request.getRequestDispatcher("pages/user/login.jsp").forward(request, response);
+			request.getRequestDispatcher("pages/user/login.html").forward(request, response);
 			System.out.println("Login failed");
 		}
 		
