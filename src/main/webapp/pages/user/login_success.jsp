@@ -20,7 +20,7 @@ h1 a {
 <body>
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif">
-				<%@ include file = "/pages/common/commonMenu.jsp"%>
+				<%@ include file = "/pages/common/commonUserMenu.jsp"%>
 	</div>
 
 	<div id="main">

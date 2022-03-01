@@ -12,11 +12,9 @@
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif"> <span
 			class="wel_word">购物车</span>
-		<%@ include file = "/pages/common/commonMenu.jsp"%>
+		<%@ include file = "/pages/common/commonUserMenu.jsp"%>
 	</div>
-
 	<div id="main">
-
 		<table>
 			<tr>
 				<td>商品名称</td>
