@@ -108,7 +108,7 @@
 				<div class="login_box">
 					<div class="tit">
 						<h1>注册尚硅谷会员</h1>
-						<span class="errorMsg"></span>
+						<span class="errorMsg"><%=request.getAttribute("msg")==null?"":request.getAttribute("msg") %></span>
 					</div>
 					<div class="form">
 						<form action="RegisterServlet" method="post">
