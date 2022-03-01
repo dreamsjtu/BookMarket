@@ -52,6 +52,11 @@ public class RegisterServlet extends HttpServlet {
 		}else {
 			//If incorrect
 			//Back to register page
+			request.setAttribute("msg", "Wrong verification code");
+			request.setAttribute("username", username);
+			request.setAttribute("password", password);
+			request.setAttribute("email", email);
+			request.setAttribute("code", code);
 			request.getRequestDispatcher("pages/user/regist.jsp").forward(request, response);
 			System.out.println("wrong verification code");
 		}
