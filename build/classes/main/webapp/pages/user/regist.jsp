@@ -113,18 +113,18 @@
 					<div class="form">
 						<form action="RegisterServlet" method="post">
 							<label>用户名称：</label> <input class="itxt" type="text"
-								placeholder="请输入用户名" value="wzg168" autocomplete="off"
+								placeholder="请输入用户名" value="<%=request.getAttribute("username")==null?"huacheng":request.getAttribute("username") %>" autocomplete="off"
 								tabindex="1" name="username" id="username" /> <br /> <br /> <label>用户密码：</label>
 							<input class="itxt" type="password" placeholder="请输入密码"
-								value="123456" autocomplete="off" tabindex="1" name="password"
+								value="<%=request.getAttribute("password")==null?"123456":request.getAttribute("password") %>" autocomplete="off" tabindex="1" name="password"
 								id="password" /> <br /> <br /> <label>确认密码：</label> <input
-								class="itxt" type="password" placeholder="确认密码" value="123456"
+								class="itxt" type="password" placeholder="确认密码" value="<%=request.getAttribute("password")==null?"123456":request.getAttribute("password") %>"
 								autocomplete="off" tabindex="1" name="repwd" id="repwd" /> <br />
 							<br /> <label>电子邮件：</label> <input class="itxt" type="text"
-								placeholder="请输入邮箱地址" value="wzg168@qq.com" autocomplete="off"
+								placeholder="请输入邮箱地址" value="<%=request.getAttribute("email")==null?"huacheng@gmail.com":request.getAttribute("email") %>" autocomplete="off"
 								tabindex="1" name="email" id="email" /> <br /> <br /> <label>验证码：</label>
 							<input class="itxt" type="text" name="code" style="width: 150px;"
-								id="code" value="abcde" /> <img alt="" src="static/img/code.bmp"
+								id="code" value="<%=request.getAttribute("code")==null?"abcde":request.getAttribute("code") %>" /> <img alt="" src="static/img/code.bmp"
 								style="float: right; margin-right: 40px"> <br /> <br />
 							<input type="submit" value="注册" id="sub_btn" />
 						</form>

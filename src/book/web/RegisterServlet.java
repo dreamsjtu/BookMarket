@@ -34,6 +34,11 @@ public class RegisterServlet extends HttpServlet {
 			if(userServiceImpl.existUsername(username)) {
 				//If exist
 				//Back to register page
+				request.setAttribute("msg", "Username already exists");
+				request.setAttribute("username", username);
+				request.setAttribute("password", password);
+				request.setAttribute("email", email);
+				request.setAttribute("code", code);
 				request.getRequestDispatcher("pages/user/regist.jsp").forward(request, response);
 				System.out.println("username already exists");
 			}else {
