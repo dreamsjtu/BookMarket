@@ -14,23 +14,8 @@ import book.service.impl.UserServiceImpl;
 /**
  * Servlet implementation class UserServlet
  */
-public class UserServlet extends HttpServlet {
+public class UserServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-			try {
-				//Get the related method of the action.
-				Method method = this.getClass().getDeclaredMethod(action,HttpServletRequest.class, HttpServletResponse.class);
-				//Invoke the related method.
-				method.invoke(this,request,response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	}
 	
 	/**
 	 * Implement the functionalities of login servlet, redirect to different pages based on the login details.
