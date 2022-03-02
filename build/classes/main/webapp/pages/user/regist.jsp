@@ -112,6 +112,7 @@
 					</div>
 					<div class="form">
 						<form action="RegisterServlet" method="post">
+						<input type = "hidden" name = "action" value = "register">
 							<label>用户名称：</label> <input class="itxt" type="text"
 								placeholder="请输入用户名" value="<%=request.getAttribute("username")==null?"huacheng":request.getAttribute("username") %>" autocomplete="off"
 								tabindex="1" name="username" id="username" /> <br /> <br /> <label>用户密码：</label>
