@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import book.pojo.User;
 import book.service.impl.UserServiceImpl;
@@ -20,11 +21,15 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("action").equals("login")) {
-			login(request,response);
-		}else if (request.getParameter("action").equals("register")) {
-			register(request,response);
-		}
+		String action = request.getParameter("action");
+			try {
+				//Get the related method of the action.
+				Method method = this.getClass().getDeclaredMethod(action,HttpServletRequest.class, HttpServletResponse.class);
+				//Invoke the related method.
+				method.invoke(this,request,response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	/**
