@@ -43,7 +43,9 @@ class BookDaoTest {
 
 	@Test
 	void testQueryBooks() {
-		fail("Not yet implemented");
+		for(Book queryBook:bookDao.queryBooks()) {
+			System.out.println(queryBook);
+		}
 	}
 
 }
