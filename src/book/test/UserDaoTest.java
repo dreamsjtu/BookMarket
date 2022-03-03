@@ -8,7 +8,7 @@ import book.dao.UserDao;
 import book.dao.impl.UserDaoImpl;
 import book.pojo.User;
 
-class UserDaoImplTest {
+class UserDaoTest {
 
 	UserDao userDao = new UserDaoImpl();
 	
