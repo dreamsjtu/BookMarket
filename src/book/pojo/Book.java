@@ -89,4 +89,12 @@ public class Book {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", price=" + price + ", author=" + author + ", sales=" + sales
+				+ ", stock=" + stock + ", imgPath=" + imgPath + "]";
+	}
+	
+	
+
 }
