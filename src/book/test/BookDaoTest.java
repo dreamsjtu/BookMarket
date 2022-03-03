@@ -28,7 +28,12 @@ class BookDaoTest {
 
 	@Test
 	void testDeleteBookById() {
-		fail("Not yet implemented");
+		bookDao.deleteBookById(20);
+		if(bookDao.queryBookById(20)==null){
+			System.out.println("Delete successful");
+		}else {
+			System.out.println("Delete failed");
+		}
 	}
 
 	@Test
