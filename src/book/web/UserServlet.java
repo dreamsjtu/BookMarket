@@ -6,10 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import book.pojo.User;
 import book.service.impl.UserServiceImpl;
+import book.util.WebUtils;
 
 /**
  * Servlet implementation class UserServlet
@@ -59,7 +63,8 @@ public class UserServlet extends BaseServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
-		
+		//Create a new user object
+		User user = WebUtils.copyParamToBean(new User(), request.getParameterMap());
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
 		//Check if verification code correct
