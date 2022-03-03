@@ -64,8 +64,7 @@ public class UserServlet extends BaseServlet {
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
 		//Create a new user object
-		User user = new User();
-		WebUtils.copyParamToBean(user, request.getParameterMap());
+		User user = WebUtils.copyParamToBean(new User(), request.getParameterMap());
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
 		//Check if verification code correct

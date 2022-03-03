@@ -12,7 +12,7 @@ public class WebUtils {
 	 * @param value
 	 * @return the bean object
 	 */
-	public static Object copyParamToBean(Object bean, Map value) {
+	public static <T> T copyParamToBean(T bean, Map value) {
 		// Use BeanUtils to populate bean.
 		try {
 			BeanUtils.populate(bean, value);
