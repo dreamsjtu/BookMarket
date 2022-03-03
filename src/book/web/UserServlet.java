@@ -13,6 +13,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import book.pojo.User;
 import book.service.impl.UserServiceImpl;
+import book.util.WebUtils;
 
 /**
  * Servlet implementation class UserServlet
@@ -64,12 +65,7 @@ public class UserServlet extends BaseServlet {
 		String code = request.getParameter("code");
 		//Create a new user object
 		User user = new User();
-		//Use BeanUtils to populate user.
-		try {
-			BeanUtils.populate(user, request.getParameterMap());
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
+		WebUtils.copyParamToBean(user, request.getParameterMap());
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
 		//Check if verification code correct
