@@ -33,7 +33,12 @@ class BookDaoTest {
 
 	@Test
 	void testUpdateBook() {
-		fail("Not yet implemented");
+		bookDao.updateBook(new Book(2,"天官赐福",new BigDecimal(100),"墨香铜臭",3000,2000,""));
+		if(bookDao.queryBookById(2).getName().equalsIgnoreCase("天官赐福")) {
+			System.out.println("Correct book");
+		}else {
+			System.out.println("Wrong book");
+		}
 	}
 
 	@Test
