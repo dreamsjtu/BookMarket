@@ -19,7 +19,11 @@ class BookDaoTest {
 
 	@Test
 	void testQueryBookById() {
-		fail("Not yet implemented");
+		if(bookDao.queryBookById(1).getName().equalsIgnoreCase("java从入门到放弃")) {
+			System.out.println("Correct book");
+		}else {
+			System.out.println("Wrong book");
+		}
 	}
 
 	@Test
