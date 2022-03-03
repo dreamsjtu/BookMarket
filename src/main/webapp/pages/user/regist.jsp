@@ -108,24 +108,24 @@
 				<div class="login_box">
 					<div class="tit">
 						<h1>注册尚硅谷会员</h1>
-						<span class="errorMsg"><%=request.getAttribute("msg")==null?"":request.getAttribute("msg") %></span>
+						<span class="errorMsg">${ empty requestScope.msg ? "请输入用户名和密码":requestScope.msg} </span>
 					</div>
 					<div class="form">
 						<form action="UserServlet" method="post">
 						<input type = "hidden" name = "action" value = "register">
 							<label>用户名称：</label> <input class="itxt" type="text"
-								placeholder="请输入用户名" value="<%=request.getAttribute("username")==null?"huacheng":request.getAttribute("username") %>" autocomplete="off"
+								placeholder="请输入用户名" value="${requestScope.username}" autocomplete="off"
 								tabindex="1" name="username" id="username" /> <br /> <br /> <label>用户密码：</label>
 							<input class="itxt" type="password" placeholder="请输入密码"
-								value="<%=request.getAttribute("password")==null?"123456":request.getAttribute("password") %>" autocomplete="off" tabindex="1" name="password"
+								value="${requestScope.password}" autocomplete="off" tabindex="1" name="password"
 								id="password" /> <br /> <br /> <label>确认密码：</label> <input
-								class="itxt" type="password" placeholder="确认密码" value="<%=request.getAttribute("password")==null?"123456":request.getAttribute("password") %>"
+								class="itxt" type="password" placeholder="确认密码" value="${requestScope.password}"
 								autocomplete="off" tabindex="1" name="repwd" id="repwd" /> <br />
 							<br /> <label>电子邮件：</label> <input class="itxt" type="text"
-								placeholder="请输入邮箱地址" value="<%=request.getAttribute("email")==null?"huacheng@gmail.com":request.getAttribute("email") %>" autocomplete="off"
+								placeholder="请输入邮箱地址" value="${requestScope.email}" autocomplete="off"
 								tabindex="1" name="email" id="email" /> <br /> <br /> <label>验证码：</label>
 							<input class="itxt" type="text" name="code" style="width: 150px;"
-								id="code" value="<%=request.getAttribute("code")==null?"abcde":request.getAttribute("code") %>" /> <img alt="" src="static/img/code.bmp"
+								id="code" value="${requestScope.code}" /> <img alt="" src="static/img/code.bmp"
 								style="float: right; margin-right: 40px"> <br /> <br />
 							<input type="submit" value="注册" id="sub_btn" />
 						</form>
