@@ -27,7 +27,7 @@ public interface BookService {
 	 * Query a book in the database by ID
 	 * @param id
 	 */
-	public void queryBookById(Integer id);
+	public Book queryBookById(Integer id);
 	
 	/**
 	 * Get a list of book from the database
