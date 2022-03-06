@@ -54,7 +54,10 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Enquirying all the books by using BookService
+		//Save all the books to request
+		//Request forward to book_manager.jsp
+		
 	}
 
 }
