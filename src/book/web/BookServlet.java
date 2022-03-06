@@ -17,6 +17,10 @@ public class BookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private BookService bookService = new BookServiceImpl();
 	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		doPost(request,response);
+	}
 	/**
 	 * This would handle the add book action
 	 * @param request
