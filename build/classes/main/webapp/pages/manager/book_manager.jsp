@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -6,7 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>图书管理</title>
-<%@ include file="/pages/common/commonHeadContent.jsp"%></head>
+<%@ include file="/pages/common/commonHeadContent.jsp"%>
+<script type="text/javascript">
+	$(function(){
+		System.out.println("delete book");
+		$("a.deleteItem").click(function(){
+			
+			return confirm("Sure to delete "+$(this).parent().parent().find("td:first").text()+" ?");
+		});
+	});
+</script>
+</head>
 <body>
 
 	<div id="header">
@@ -35,7 +45,8 @@
 					<td>${book.sales}</td>
 					<td>${book.stock}</td>
 					<td><a href="book_edit.jsp">修改</a></td>
-					<td><a href="Manager/BookServlet?action=delete&id=${book.id}">删除</a></td>
+					<td><a class="deleteItem"
+						href="Manager/BookServlet?action=delete&id=${book.id}">删除</a></td>
 				</tr>
 			</c:forEach>
 
