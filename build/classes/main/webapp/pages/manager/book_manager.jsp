@@ -9,9 +9,7 @@
 <%@ include file="/pages/common/commonHeadContent.jsp"%>
 <script type="text/javascript">
 	$(function(){
-		System.out.println("delete book");
-		$("a.deleteItem").click(function(){
-			
+		$("a.deleteItem").click(function(){		
 			return confirm("Sure to delete "+$(this).parent().parent().find("td:first").text()+" ?");
 		});
 	});
