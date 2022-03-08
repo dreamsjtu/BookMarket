@@ -47,7 +47,13 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Get all the request parameters
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		//Delete the book according to the id
+		bookService.deleteBook(bookId);
+		//Jump to the book list page
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		
 	}
 	
 	/**
