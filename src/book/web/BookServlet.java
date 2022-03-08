@@ -82,5 +82,24 @@ public class BookServlet extends BaseServlet {
 		//Request forward to book_manager.jsp
 		request.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(request, response);
 	}
+	
+	/**
+	 * This would query the book in database with the id from the request and add the data to request and forward the request to target page.
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void getBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get the book id from request
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		//Call queryBookById to get the related book
+		Book book = bookService.queryBookById(bookId);
+		//Set the book as an attribute of the request
+		request.setAttribute("book", book);
+		//Forward the request to book_edit.jsp
+		request.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(request, response);
+	}
+	
 
 }
