@@ -64,7 +64,13 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Get all the request parameters
+		//Encapsulate the parameters into a book object
+		Book book = WebUtils.copyParamToBean(new Book(), request.getParameterMap());
+		//Call the updateBook in BookService to update the book info in database
+		bookService.updateBook(book);
+		//Jump to updated book list page
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
 	}
 	
 	/**
