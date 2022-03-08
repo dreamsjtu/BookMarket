@@ -34,8 +34,9 @@ public class BookServlet extends BaseServlet {
 		Book book = WebUtils.copyParamToBean(new Book(),request.getParameterMap());
 		//Call addBook method in BookService
 		bookService.addBook(book);
-		//Forward request to the updated book list page.
-		request.getRequestDispatcher("/Manager/BookServlet?action=list").forward(request, response);
+		//Jump to the updated book list page.
+//		request.getRequestDispatcher("/Manager/BookServlet?action=list").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
 	}
 	
 	/**
