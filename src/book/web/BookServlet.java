@@ -67,6 +67,7 @@ public class BookServlet extends BaseServlet {
 		//Get all the request parameters
 		//Encapsulate the parameters into a book object
 		Book book = WebUtils.copyParamToBean(new Book(), request.getParameterMap());
+		System.out.println(book);
 		//Call the updateBook in BookService to update the book info in database
 		bookService.updateBook(book);
 		//Jump to updated book list page
