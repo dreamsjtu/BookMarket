@@ -6,6 +6,7 @@ import java.util.List;
 import book.pojo.Book;
 import book.service.BookService;
 import book.service.impl.BookServiceImpl;
+import book.util.WebUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,7 +30,12 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Get all the request parameters, encapsulate them into Book object.
+		Book book = WebUtils.copyParamToBean(new Book(),request.getParameterMap());
+		//Call addBook method in BookService
+		bookService.addBook(book);
+		//Forward request to the updated book list page.
+		request.getRequestDispatcher("/Manager/BookServlet?action=list").forward(request, response);
 	}
 	
 	/**
