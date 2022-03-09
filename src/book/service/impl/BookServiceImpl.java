@@ -56,7 +56,7 @@ public class BookServiceImpl implements BookService {
 		
 		page.setItemsNumber(itemsNumber);
 		page.setTotalPages(totalPages);
-		page.setBookItems(items);
+		page.setItems(items);
 		page.setPageNumber(pageNumber);
 		page.setPageSize(pageSize);
 		return page;
