@@ -74,8 +74,12 @@
 				<script type="text/javascript">
 				$(function(){
 					$("#changePageBtn").click(function(){
-						console.log("hi");
-						location.href = "http://localhost:8080/BookMarket/Manager/BookServlet?action=page&pageNumber="+$("#pn_input").val();
+						var pageNumber = $("#pn_input").val();
+						if(pageNumber<1||pageNumber>${requestScope.page.totalPages}){
+							alert("page number beyond the range.")
+							return false;
+						}
+						location.href = "${requestScope.basePath}Manager/BookServlet?action=page&pageNumber="+pageNumber;
 					});
 				});
 				</script>
