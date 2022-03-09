@@ -69,8 +69,16 @@
 				<a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a> 
 				</c:if>
 				共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
-				value="4" name="pn" id="pn_input" />页 <input type="button"
+				value=${requestScope.page.pageNumber} name="pn" id="pn_input" />页 <input id="changePageBtn" type="button"
 				value="确定">
+				<script type="text/javascript">
+				$(function(){
+					$("#changePageBtn").click(function(){
+						console.log("hi");
+						location.href = "http://localhost:8080/BookMarket/Manager/BookServlet?action=page&pageNumber="+$("#pn_input").val();
+					});
+				});
+				</script>
 		</div>
 	</div>
 
