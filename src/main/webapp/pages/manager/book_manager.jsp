@@ -35,7 +35,7 @@
 			</tr>
 
 
-			<c:forEach items="${requestScope.books}" var="book">
+			<c:forEach items="${requestScope.page.items}" var="book">
 				<tr>
 					<td>${book.name}</td>
 					<td>${book.price}</td>
