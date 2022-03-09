@@ -3,8 +3,10 @@ package book.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import book.dao.BookDao;
 import book.dao.impl.BookDaoImpl;
@@ -51,6 +53,16 @@ class BookDaoTest {
 		for(Book queryBook:bookDao.queryBooks()) {
 			System.out.println(queryBook);
 		}
+	}
+	
+	@Test
+	void testQueryForItemsNumber() {
+		System.out.println(bookDao.queryForItemsNumber());
+	}
+
+	@Test
+	void testQueryForPageItems() {
+		bookDao.queryForPageItems(8, 4).forEach(System.out::println);
 	}
 
 }

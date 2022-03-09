@@ -42,7 +42,8 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 	@Override
 	public int queryForItemsNumber() {
 		String sql = "select count(*) from t_book";
-		return (int) queryForSingleValue(sql);
+		Number count = (Number) queryForSingleValue(sql);
+		return count.intValue();
 	}
 
 	@Override
