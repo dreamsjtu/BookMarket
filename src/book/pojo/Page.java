@@ -8,8 +8,8 @@ import java.util.List;
  *
  * @param <T> The javabean object of a concrete model
  */
-public class page<T> {
-	public page(int pageNumber, int totalPages, int totalItems, List<T> items, int pageSize) {
+public class Page<T> {
+	public Page(int pageNumber, int totalPages, int totalItems, List<T> items, int pageSize) {
 		super();
 		this.pageNumber = pageNumber;
 		this.totalPages = totalPages;

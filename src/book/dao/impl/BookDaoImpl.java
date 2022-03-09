@@ -38,4 +38,15 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 		return queryForList(Book.class,sql);
 	}
 
+
+	public int queryForItemsNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List<Book> queryForPageItems(int begin, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import book.pojo.Book;
+import book.pojo.Page;
 import book.service.BookService;
 import book.service.impl.BookServiceImpl;
 import book.util.WebUtils;
@@ -116,8 +117,11 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Get the parameters from request
+		//Get the parameters(pageNumber,pageSize) from request
+		int pageNumber = Integer.parseInt(request.getParameter("pageNumber"),1);
+		int pageSize = Integer.parseInt(request.getParameter("pageSize"),Page.PAGE_SIZE);
 		//Call page method in bookServlet to get a page object
+		Page<Book> page = bookService.page(pageNumber,pageSize);
 		//Save the page object to request scope.
 		//forward request to book_manager.jsp
 	}

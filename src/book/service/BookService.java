@@ -3,6 +3,7 @@ package book.service;
 import java.util.List;
 
 import book.pojo.Book;
+import book.pojo.Page;
 
 public interface BookService {
 	/**
@@ -34,5 +35,7 @@ public interface BookService {
 	 * @return the book list
 	 */
 	public List<Book> queryBooks();
+
+	public Page<Book> page(int pageNumber, int pageSize);
 	
 }
