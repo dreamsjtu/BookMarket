@@ -2,6 +2,7 @@ package book.service.impl;
 
 import java.util.List;
 
+import book.dao.BookDao;
 import book.dao.impl.BookDaoImpl;
 import book.pojo.Book;
 import book.pojo.Page;
@@ -9,7 +10,7 @@ import book.service.BookService;
 
 public class BookServiceImpl implements BookService {
 
-	private BookDaoImpl bookDaoImpl = new BookDaoImpl();
+	private BookDao bookDaoImpl = new BookDaoImpl();
 
 	@Override
 	public void addBook(Book book) {
