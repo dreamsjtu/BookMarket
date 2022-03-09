@@ -41,7 +41,7 @@ public class Page<T> {
 		return itemsNumber;
 	}
 
-	public List<T> getBookItems() {
+	public List<T> getItems() {
 		return items;
 	}
 
@@ -61,7 +61,7 @@ public class Page<T> {
 		this.itemsNumber = totalItems;
 	}
 
-	public void setBookItems(List<T> items) {
+	public void setItems(List<T> items) {
 		this.items = items;
 	}
 
