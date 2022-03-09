@@ -108,5 +108,19 @@ public class BookServlet extends BaseServlet {
 		request.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(request, response);
 	}
 	
+	/**
+	 * This is for handling the paging request.
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get the parameters from request
+		//Call page method in bookServlet to get a page object
+		//Save the page object to request scope.
+		//forward request to book_manager.jsp
+	}
+	
 
 }
