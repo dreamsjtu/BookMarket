@@ -38,6 +38,20 @@ public interface BookDao {
 	 * @return the book list
 	 */
 	public List<Book> queryBooks();
+
+	/**
+	 * This is query the database for the amount of book items.
+	 * @return the amount of book items.
+	 */
+	public int queryForItemsNumber();
+
+	/**
+	 * This is for query the database for book items index start with begin and the maximum amounts is pageSize.
+	 * @param begin
+	 * @param pageSize
+	 * @return a list of books on current page
+	 */
+	public List<Book> queryForPageItems(int begin, int pageSize);
 	
 
 }
