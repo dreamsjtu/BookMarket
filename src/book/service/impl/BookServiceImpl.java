@@ -43,6 +43,8 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Page<Book> page(int pageNumber, int pageSize) {
+		//Create a new Page object
+		Page<Book> page = new Page();
 		//Call method in Dao layer to get the total amount of items
 		int itemsNumber = bookDaoImpl.queryForItemsNumber();
 		//Calculate the total pages by amount of items and pageSize
@@ -51,7 +53,13 @@ public class BookServiceImpl implements BookService {
 		int begin  = (pageNumber-1)*pageSize;
 		//Call method in Dao layer to get the items on current page
 		List<Book> items = bookDaoImpl.queryForPageItems(begin,pageSize);
-		return null;
+		
+		page.setItemsNumber(itemsNumber);
+		page.setTotalPages(totalPages);
+		page.setBookItems(items);
+		page.setPageNumber(pageNumber);
+		page.setPageSize(pageSize);
+		return page;
 	}
 
 }

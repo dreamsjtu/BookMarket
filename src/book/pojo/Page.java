@@ -9,19 +9,23 @@ import java.util.List;
  * @param <T> The javabean object of a concrete model
  */
 public class Page<T> {
-	public Page(int pageNumber, int totalPages, int totalItems, List<T> items, int pageSize) {
+	public Page(int pageNumber, int totalPages, int itemsNumber, List<T> items, int pageSize) {
 		super();
 		this.pageNumber = pageNumber;
 		this.totalPages = totalPages;
-		this.totalItems = totalItems;
+		this.itemsNumber = itemsNumber;
 		this.items = items;
 		this.pageSize = pageSize;
+	}
+	
+	public Page() {
+		
 	}
 
 	public static final int PAGE_SIZE = 4;
 	private int pageNumber;
 	private int totalPages;
-	private int totalItems;
+	private int itemsNumber;
 	private List<T> items;
 	private int pageSize = PAGE_SIZE;
 
@@ -33,8 +37,8 @@ public class Page<T> {
 		return totalPages;
 	}
 
-	public int getTotalItems() {
-		return totalItems;
+	public int getItemsNumber() {
+		return itemsNumber;
 	}
 
 	public List<T> getBookItems() {
@@ -53,8 +57,8 @@ public class Page<T> {
 		this.totalPages = totalPages;
 	}
 
-	public void setTotalItems(int totalItems) {
-		this.totalItems = totalItems;
+	public void setItemsNumber(int totalItems) {
+		this.itemsNumber = totalItems;
 	}
 
 	public void setBookItems(List<T> items) {
@@ -67,7 +71,7 @@ public class Page<T> {
 
 	@Override
 	public String toString() {
-		return "page [pageNumber=" + pageNumber + ", totalPages=" + totalPages + ", totalItems=" + totalItems
+		return "page [pageNumber=" + pageNumber + ", totalPages=" + totalPages + ", totalItems=" + itemsNumber
 				+ ", bookItems=" + items + ", pageSize=" + pageSize + "]";
 	}
 }
