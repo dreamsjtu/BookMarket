@@ -123,7 +123,9 @@ public class BookServlet extends BaseServlet {
 		//Call page method in bookServlet to get a page object
 		Page<Book> page = bookService.page(pageNumber,pageSize);
 		//Save the page object to request scope.
+		request.setAttribute("page", page);
 		//forward request to book_manager.jsp
+		request.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(request, response);
 	}
 	
 
