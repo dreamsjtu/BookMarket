@@ -49,7 +49,7 @@ public class BookServlet extends BaseServlet {
 	 */
 	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get all the request parameters
-		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Integer bookId = WebUtils.parseInt(request.getParameter("id"),0);
 		//Delete the book according to the id
 		bookService.deleteBook(bookId);
 		//Jump to the book list page
@@ -100,7 +100,7 @@ public class BookServlet extends BaseServlet {
 	 */
 	protected void getBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get the book id from request
-		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Integer bookId = WebUtils.parseInt(request.getParameter("id"),0);
 		//Call queryBookById to get the related book
 		Book book = bookService.queryBookById(bookId);
 		//Set the book as an attribute of the request
@@ -118,8 +118,8 @@ public class BookServlet extends BaseServlet {
 	 */
 	protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get the parameters(pageNumber,pageSize) from request
-		int pageNumber = Integer.parseInt(request.getParameter("pageNumber"),1);
-		int pageSize = Integer.parseInt(request.getParameter("pageSize"),Page.PAGE_SIZE);
+		int pageNumber = WebUtils.parseInt(request.getParameter("pageNumber"),1);
+		int pageSize = WebUtils.parseInt(request.getParameter("pageSize"),Page.PAGE_SIZE);
 		//Call page method in bookServlet to get a page object
 		Page<Book> page = bookService.page(pageNumber,pageSize);
 		//Save the page object to request scope.
