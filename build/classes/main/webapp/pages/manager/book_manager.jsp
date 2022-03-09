@@ -59,8 +59,8 @@
 			</tr>
 		</table>
 		<div id="page_nav">
-			<a href="#">首页</a> <a href="#">上一页</a> <a href="#">3</a> 【${ requestScope.page.pageNumber}】 <a
-				href="#">5</a> <a href="#">下一页</a> <a href="#">末页</a> 共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
+			<a href="Manager/BookServlet?action=page&pageNumber=1">首页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber-1}">上一页</a> <a href="#">3</a> 【${ requestScope.page.pageNumber}】 <a
+				href="#">5</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber+1}">下一页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a> 共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
 				value="4" name="pn" id="pn_input" />页 <input type="button"
 				value="确定">
 		</div>
