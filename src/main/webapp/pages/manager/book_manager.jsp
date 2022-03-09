@@ -59,8 +59,16 @@
 			</tr>
 		</table>
 		<div id="page_nav">
-			<a href="Manager/BookServlet?action=page&pageNumber=1">首页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber-1}">上一页</a> <a href="#">3</a> 【${ requestScope.page.pageNumber}】 <a
-				href="#">5</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber+1}">下一页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a> 共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
+			<c:if test = "${requestScope.page.pageNumber>1 }">
+			<a href="Manager/BookServlet?action=page&pageNumber=1">首页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber-1}">上一页</a> 
+			</c:if>
+			<a href="#">3</a> 【${ requestScope.page.pageNumber}】 <a
+				href="#">5</a> 
+				<c:if test = "${requestScope.page.pageNumber<requestScope.page.totalPages }">
+				<a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber+1}">下一页</a> 
+				<a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a> 
+				</c:if>
+				共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
 				value="4" name="pn" id="pn_input" />页 <input type="button"
 				value="确定">
 		</div>
