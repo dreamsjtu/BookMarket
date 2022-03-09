@@ -49,6 +49,12 @@ public class BookServiceImpl implements BookService {
 		int itemsNumber = bookDaoImpl.queryForItemsNumber();
 		//Calculate the total pages by amount of items and pageSize
 		int totalPages = itemsNumber%pageSize==0?(int)itemsNumber/pageSize:(int)itemsNumber/pageSize+1;
+		//Validate page range.
+		if(pageNumber<1) {
+			pageNumber=1;
+		}else if (pageNumber>totalPages) {
+			pageNumber=totalPages;
+		}
 		//Calculate the begin index of current page
 		int begin  = (pageNumber-1)*pageSize;
 		//Call method in Dao layer to get the items on current page
