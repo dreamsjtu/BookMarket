@@ -45,7 +45,7 @@
 					<td><a
 						href="Manager/BookServlet?action=getBook&id=${book.id}&method=update">修改</a></td>
 					<td><a class="deleteItem"
-						href="Manager/BookServlet?action=delete&id=${book.id}">删除</a></td>
+						href="Manager/BookServlet?action=delete&id=${book.id}&pageNumber=${requestScope.page.pageNumber}">删除</a></td>
 				</tr>
 			</c:forEach>
 

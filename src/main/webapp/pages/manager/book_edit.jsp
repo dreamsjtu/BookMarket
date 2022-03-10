@@ -33,6 +33,7 @@ input {
 		<input type = "hidden" name = "action" value = ${param.method}>
 		<input type = "hidden" name = "id" value = ${requestScope.book.id}>
 		<input type = "hidden" name = "totalPages" value = ${param.totalPages}>
+		<input type = "hidden" name = "pageNumber" value = ${param.pageNumber}>
 			<table>
 				<tr>
 					<td>名称</td>

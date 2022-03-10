@@ -57,8 +57,7 @@ public class BookServlet extends BaseServlet {
 		//Delete the book according to the id
 		bookService.deleteBook(bookId);
 		//Jump to the book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page");
-		
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+request.getParameter("pageNumber"));
 	}
 	
 	/**
