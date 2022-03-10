@@ -31,13 +31,17 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get the total pages
+		int totalPages=WebUtils.parseInt(request.getParameter("totalPages"), 0);
+		//Add one to the totalPages.
+		totalPages+=1;
 		//Get all the request parameters, encapsulate them into Book object.
 		Book book = WebUtils.copyParamToBean(new Book(),request.getParameterMap());
 		//Call addBook method in BookService
 		bookService.addBook(book);
 		//Jump to the updated book list page.
 //		request.getRequestDispatcher("/Manager/BookServlet?action=list").forward(request, response);
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+totalPages);
 	}
 	
 	/**
@@ -53,7 +57,7 @@ public class BookServlet extends BaseServlet {
 		//Delete the book according to the id
 		bookService.deleteBook(bookId);
 		//Jump to the book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page");
 		
 	}
 	
@@ -72,7 +76,7 @@ public class BookServlet extends BaseServlet {
 		//Call the updateBook in BookService to update the book info in database
 		bookService.updateBook(book);
 		//Jump to updated book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page");
 	}
 	
 	/**

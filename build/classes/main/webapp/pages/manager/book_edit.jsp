@@ -32,6 +32,7 @@ input {
 		<form action="Manager/BookServlet">
 		<input type = "hidden" name = "action" value = ${param.method}>
 		<input type = "hidden" name = "id" value = ${requestScope.book.id}>
+		<input type = "hidden" name = "totalPages" value = ${param.totalPages}>
 			<table>
 				<tr>
 					<td>名称</td>
