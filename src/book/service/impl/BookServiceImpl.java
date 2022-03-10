@@ -45,26 +45,19 @@ public class BookServiceImpl implements BookService {
 	public Page<Book> page(int pageNumber, int pageSize) {
 		//Create a new Page object
 		Page<Book> page = new Page();
+		page.setPageSize(pageSize);
 		//Call method in Dao layer to get the total amount of items
 		int itemsNumber = bookDaoImpl.queryForItemsNumber();
 		//Calculate the total pages by amount of items and pageSize
 		int totalPages = itemsNumber%pageSize==0?(int)itemsNumber/pageSize:(int)itemsNumber/pageSize+1;
-		//Validate page range.
-		if(pageNumber<1) {
-			pageNumber=1;
-		}else if (pageNumber>totalPages) {
-			pageNumber=totalPages;
-		}
+		page.setTotalPages(totalPages);
+		page.setPageNumber(pageNumber);
 		//Calculate the begin index of current page
-		int begin  = (pageNumber-1)*pageSize;
+		int begin  = (page.getPageNumber()-1)*pageSize;
 		//Call method in Dao layer to get the items on current page
 		List<Book> items = bookDaoImpl.queryForPageItems(begin,pageSize);
-		
 		page.setItemsNumber(itemsNumber);
-		page.setTotalPages(totalPages);
 		page.setItems(items);
-		page.setPageNumber(pageNumber);
-		page.setPageSize(pageSize);
 		return page;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * This is the paging object
+ * 
  * @author mengli
  *
  * @param <T> The javabean object of a concrete model
@@ -17,9 +18,9 @@ public class Page<T> {
 		this.items = items;
 		this.pageSize = pageSize;
 	}
-	
+
 	public Page() {
-		
+
 	}
 
 	public static final int PAGE_SIZE = 4;
@@ -50,6 +51,12 @@ public class Page<T> {
 	}
 
 	public void setPageNumber(int pageNumber) {
+		// Validate page range.
+		if (pageNumber < 1) {
+			pageNumber = 1;
+		} else if (pageNumber > totalPages) {
+			pageNumber = totalPages;
+		}
 		this.pageNumber = pageNumber;
 	}
 
