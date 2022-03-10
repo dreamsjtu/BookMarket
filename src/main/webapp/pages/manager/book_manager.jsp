@@ -82,43 +82,31 @@
 					<c:choose>
 						<%--Case 2.1, current page 1,2,3--%>
 						<c:when test="${requestScope.page.pageNumber<=3}">
-							<c:forEach begin="1" end="5" var="i">
-								<c:if test="${i==requestScope.page.pageNumber}">
-									[${i}]
-								</c:if>
-								<c:if test="${i!=requestScope.page.pageNumber}">
-									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
-								</c:if>
-							</c:forEach>
+							<c:set var="begin" value="1" />
+							<c:set var="end" value="5" />
 						</c:when>
 						<%--Case 2.2, current page is the last 3 pages--%>
 						<c:when
 							test="${requestScope.page.pageNumber>requestScope.page.totalPages-3}">
-							<c:forEach begin="${requestScope.page.totalPages-4}"
-								end="${requestScope.page.totalPages}" var="i">
-								<c:if test="${i==requestScope.page.pageNumber}">
-									[${i}]
-								</c:if>
-								<c:if test="${i!=requestScope.page.pageNumber}">
-									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
-								</c:if>
-							</c:forEach>
+							<c:set var="begin" value="${requestScope.page.totalPages-4}" />
+							<c:set var="end" value="${requestScope.page.totalPages}" />
 						</c:when>
 						<%--Case 2.3, current page is the middle page--%>
 						<c:otherwise>
-							<c:forEach begin="${requestScope.page.pageNumber-2}"
-								end="${requestScope.page.pageNumber+2}" var="i">
-								<c:if test="${i==requestScope.page.pageNumber}">
-									[${i}]
-								</c:if>
-								<c:if test="${i!=requestScope.page.pageNumber}">
-									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
-								</c:if>
-							</c:forEach>
+							<c:set var="begin" value="${requestScope.page.pageNumber-2}" />
+							<c:set var="end" value="${requestScope.page.pageNumber+2}" />
 						</c:otherwise>
 					</c:choose>
 				</c:when>
 			</c:choose>
+			<c:forEach begin="${begin}" end="${end}" var="i">
+				<c:if test="${i==requestScope.page.pageNumber}">
+									[${i}]
+								</c:if>
+				<c:if test="${i!=requestScope.page.pageNumber}">
+					<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
+				</c:if>
+			</c:forEach>
 			<c:if
 				test="${requestScope.page.pageNumber<requestScope.page.totalPages }">
 				<a
