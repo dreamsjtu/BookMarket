@@ -75,7 +75,7 @@ public class BookServlet extends BaseServlet {
 		//Call the updateBook in BookService to update the book info in database
 		bookService.updateBook(book);
 		//Jump to updated book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+request.getParameter("pageNumber"));
 	}
 	
 	/**
