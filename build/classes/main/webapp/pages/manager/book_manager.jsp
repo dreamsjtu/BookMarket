@@ -42,7 +42,8 @@
 					<td>${book.author}</td>
 					<td>${book.sales}</td>
 					<td>${book.stock}</td>
-					<td><a href="Manager/BookServlet?action=getBook&id=${book.id}&method=update">修改</a></td>
+					<td><a
+						href="Manager/BookServlet?action=getBook&id=${book.id}&method=update">修改</a></td>
 					<td><a class="deleteItem"
 						href="Manager/BookServlet?action=delete&id=${book.id}">删除</a></td>
 				</tr>
@@ -59,19 +60,77 @@
 			</tr>
 		</table>
 		<div id="page_nav">
-			<c:if test = "${requestScope.page.pageNumber>1 }">
-			<a href="Manager/BookServlet?action=page&pageNumber=1">首页</a> <a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber-1}">上一页</a> 
+			<c:if test="${requestScope.page.pageNumber>1 }">
+				<a href="Manager/BookServlet?action=page&pageNumber=1">首页</a>
+				<a
+					href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber-1}">上一页</a>
 			</c:if>
-			<a href="#">3</a> 【${ requestScope.page.pageNumber}】 <a
-				href="#">5</a> 
-				<c:if test = "${requestScope.page.pageNumber<requestScope.page.totalPages }">
-				<a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber+1}">下一页</a> 
-				<a href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a> 
-				</c:if>
-				共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录 到第<input
-				value=${requestScope.page.pageNumber} name="pn" id="pn_input" />页 <input id="changePageBtn" type="button"
+			<c:choose>
+				<%--Case 1, total pages less or equal to 5 --%>
+				<c:when test="${requestScope.page.totalPages<=5}">
+					<c:forEach begin="1" end="${requestScope.page.totalPages}" var="i">
+						<c:if test="${i==requestScope.page.pageNumber}">
+						[${i}]
+					</c:if>
+						<c:if test="${i!=requestScope.page.pageNumber}">
+							<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
+						</c:if>
+					</c:forEach>
+				</c:when>
+				<%--Case 2, total pages more than 5--%>
+				<c:when test="${requestScope.page.totalPages>5}">
+					<c:choose>
+						<%--Case 2.1, current page 1,2,3--%>
+						<c:when test="${requestScope.page.pageNumber<=3}">
+							<c:forEach begin="1" end="5" var="i">
+								<c:if test="${i==requestScope.page.pageNumber}">
+									[${i}]
+								</c:if>
+								<c:if test="${i!=requestScope.page.pageNumber}">
+									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<%--Case 2.2, current page is the last 3 pages--%>
+						<c:when
+							test="${requestScope.page.pageNumber>requestScope.page.totalPages-3}">
+							<c:forEach begin="${requestScope.page.totalPages-4}"
+								end="${requestScope.page.totalPages}" var="i">
+								<c:if test="${i==requestScope.page.pageNumber}">
+									[${i}]
+								</c:if>
+								<c:if test="${i!=requestScope.page.pageNumber}">
+									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<%--Case 2.3, current page is the middle page--%>
+						<c:otherwise>
+							<c:forEach begin="${requestScope.page.pageNumber-2}"
+								end="${requestScope.page.pageNumber+2}" var="i">
+								<c:if test="${i==requestScope.page.pageNumber}">
+									[${i}]
+								</c:if>
+								<c:if test="${i!=requestScope.page.pageNumber}">
+									<a href="Manager/BookServlet?action=page&pageNumber=${i}">${i}</a>
+								</c:if>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+			</c:choose>
+			<c:if
+				test="${requestScope.page.pageNumber<requestScope.page.totalPages }">
+				<a
+					href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.pageNumber+1}">下一页</a>
+				<a
+					href="Manager/BookServlet?action=page&pageNumber=${ requestScope.page.totalPages}">末页</a>
+			</c:if>
+			共${ requestScope.page.totalPages}页，${ requestScope.page.itemsNumber}条记录
+			到第<input value=${requestScope.page.pageNumber } name="pn"
+				id="pn_input" />页 <input id="changePageBtn" type="button"
 				value="确定">
-				<script type="text/javascript">
+			<script type="text/javascript">
 				$(function(){
 					$("#changePageBtn").click(function(){
 						var pageNumber = $("#pn_input").val();
