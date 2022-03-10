@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import book.pojo.Book;
+import book.pojo.Page;
 import book.service.BookService;
 import book.service.impl.BookServiceImpl;
 import book.util.WebUtils;
@@ -30,13 +31,17 @@ public class BookServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get the total pages
+		int totalPages=WebUtils.parseInt(request.getParameter("totalPages"), 0);
+		//Add one to the totalPages.
+		totalPages+=1;
 		//Get all the request parameters, encapsulate them into Book object.
 		Book book = WebUtils.copyParamToBean(new Book(),request.getParameterMap());
 		//Call addBook method in BookService
 		bookService.addBook(book);
 		//Jump to the updated book list page.
 //		request.getRequestDispatcher("/Manager/BookServlet?action=list").forward(request, response);
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+totalPages);
 	}
 	
 	/**
@@ -48,12 +53,11 @@ public class BookServlet extends BaseServlet {
 	 */
 	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get all the request parameters
-		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Integer bookId = WebUtils.parseInt(request.getParameter("id"),0);
 		//Delete the book according to the id
 		bookService.deleteBook(bookId);
 		//Jump to the book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
-		
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+request.getParameter("pageNumber"));
 	}
 	
 	/**
@@ -71,7 +75,7 @@ public class BookServlet extends BaseServlet {
 		//Call the updateBook in BookService to update the book info in database
 		bookService.updateBook(book);
 		//Jump to updated book list page
-		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=list");
+		response.sendRedirect(request.getContextPath()+"/Manager/BookServlet?action=page&pageNumber="+request.getParameter("pageNumber"));
 	}
 	
 	/**
@@ -99,13 +103,32 @@ public class BookServlet extends BaseServlet {
 	 */
 	protected void getBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get the book id from request
-		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Integer bookId = WebUtils.parseInt(request.getParameter("id"),0);
 		//Call queryBookById to get the related book
 		Book book = bookService.queryBookById(bookId);
 		//Set the book as an attribute of the request
 		request.setAttribute("book", book);
 		//Forward the request to book_edit.jsp
 		request.getRequestDispatcher("/pages/manager/book_edit.jsp").forward(request, response);
+	}
+	
+	/**
+	 * This is for handling the paging request.
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get the parameters(pageNumber,pageSize) from request
+		int pageNumber = WebUtils.parseInt(request.getParameter("pageNumber"),1);
+		int pageSize = WebUtils.parseInt(request.getParameter("pageSize"),Page.PAGE_SIZE);
+		//Call page method in bookServlet to get a page object
+		Page<Book> page = bookService.page(pageNumber,pageSize);
+		//Save the page object to request scope.
+		request.setAttribute("page", page);
+		//forward request to book_manager.jsp
+		request.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(request, response);
 	}
 	
 
