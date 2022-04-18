@@ -49,8 +49,15 @@ public class ClientBookServlet extends BaseServlet {
     int max = WebUtils.parseInt(request.getParameter("max"),Integer.MAX_VALUE);
     //Call pageByService method in bookServlet to get a page object
     Page<Book> page = bookService.pageByPrice(pageNumber,pageSize,min,max);
+    StringBuilder sb = new StringBuilder("Client/ClientBookServlet?action=pageByPrice");
+    if(request.getParameter("min")!=null) {
+      sb.append("&min=").append(request.getParameter("min"));
+    }
+    if(request.getParameter("max")!=null) {
+      sb.append("&max=").append(request.getParameter("max"));
+    }
     //set the url of page
-    page.setUrl("Client/ClientBookServlet?action=pageByPrice");
+    page.setUrl(sb.toString());
     //Save the page object to request scope.
     request.setAttribute("page", page);
     //forward request to book_manager.jsp
