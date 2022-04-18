@@ -125,6 +125,8 @@ public class BookServlet extends BaseServlet {
 		int pageSize = WebUtils.parseInt(request.getParameter("pageSize"),Page.PAGE_SIZE);
 		//Call page method in bookServlet to get a page object
 		Page<Book> page = bookService.page(pageNumber,pageSize);
+		//Set the url of page
+		page.setUrl("Manager/BookServlet?action=page");
 		//Save the page object to request scope.
 		request.setAttribute("page", page);
 		//forward request to book_manager.jsp

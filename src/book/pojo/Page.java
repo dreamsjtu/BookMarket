@@ -29,6 +29,7 @@ public class Page<T> {
 	private int itemsNumber;
 	private List<T> items;
 	private int pageSize = PAGE_SIZE;
+	private String url;
 
 	public int getPageNumber() {
 		return pageNumber;
@@ -76,9 +77,18 @@ public class Page<T> {
 		this.pageSize = pageSize;
 	}
 
-	@Override
-	public String toString() {
-		return "page [pageNumber=" + pageNumber + ", totalPages=" + totalPages + ", totalItems=" + itemsNumber
-				+ ", bookItems=" + items + ", pageSize=" + pageSize + "]";
-	}
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  @Override
+  public String toString() {
+    return "Page [pageNumber=" + pageNumber + ", totalPages=" + totalPages + ", itemsNumber="
+        + itemsNumber + ", items=" + items + ", pageSize=" + pageSize + ", url=" + url + "]";
+  }
+  
 }
