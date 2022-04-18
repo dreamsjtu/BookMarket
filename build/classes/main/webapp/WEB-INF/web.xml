@@ -49,4 +49,14 @@
     <servlet-name>BookServlet</servlet-name>
     <url-pattern>/Manager/BookServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientBookServlet</display-name>
+    <servlet-name>ClientBookServlet</servlet-name>
+    <servlet-class>book.web.ClientBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientBookServlet</servlet-name>
+    <url-pattern>/Client/ClientBookServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
