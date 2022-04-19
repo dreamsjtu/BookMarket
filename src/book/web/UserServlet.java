@@ -37,6 +37,8 @@ public class UserServlet extends BaseServlet {
 		//Try login with username and password
 		if(userServiceImpl.login(new User(null, username, password,null))!=null) {
 			//If success
+		  //Save user's info in session
+		  request.getSession().setAttribute("username", username);
 			//Go to login_success page
 			request.getRequestDispatcher("pages/user/login_success.jsp").forward(request, response);
 			System.out.println("Login successfully");
