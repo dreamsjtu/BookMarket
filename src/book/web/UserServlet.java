@@ -53,6 +53,18 @@ public class UserServlet extends BaseServlet {
 	}
 	
 	/**
+	 * Implement the functionality of logout a user, redirect to home page
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
+	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	  request.getSession().invalidate();
+	  response.sendRedirect(request.getContextPath());
+	}
+	
+	/**
 	 * Implement the functionalities of register servlet, redirect to different pages based on the register details.
 	 * @param request
 	 * @param response
@@ -103,5 +115,8 @@ public class UserServlet extends BaseServlet {
 			System.out.println("wrong verification code");
 		}
 	}
-
+	 @Override
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+     doPost(request,response);
+   }
 }
