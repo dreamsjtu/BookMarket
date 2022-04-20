@@ -79,8 +79,12 @@ public class UserServlet extends BaseServlet {
 		User user = WebUtils.copyParamToBean(new User(), request.getParameterMap());
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
+		//Get the verify code
+		String kaptchaCode = (String) request.getSession().getAttribute(KAPTCHA_SESSION_KEY);
+		//Delete the verify code
+		request.getSession().removeAttribute(KAPTCHA_SESSION_KEY);
 		//Check if verification code correct
-		if(code.equalsIgnoreCase((String) request.getSession().getAttribute(KAPTCHA_SESSION_KEY))) {
+		if(code.equalsIgnoreCase(kaptchaCode)) {
 			//If Correct
 			//Check if username exist
 			if(userServiceImpl.existUsername(username)) {
