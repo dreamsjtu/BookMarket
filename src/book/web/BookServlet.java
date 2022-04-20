@@ -8,9 +8,9 @@ import book.pojo.Page;
 import book.service.BookService;
 import book.service.impl.BookServiceImpl;
 import book.util.WebUtils;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class BookServlet
