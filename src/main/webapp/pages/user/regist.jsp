@@ -139,10 +139,10 @@
 							<br />
 							<br />
 							<label>验证码：</label>
-							<input class="itxt" type="text" name="code" style="width: 150px;"
+							<input class="itxt" type="text" name="code" style="width: 100px;"
 								id="code" value="${requestScope.code}" /> <img alt=""
 								src="Kaptcha.jpg"
-								style="float: right; margin-right: 40px">
+								style="float: right; margin-right: 20px; width:120px">
 							<br />
 							<br />
 							<input type="submit" value="注册" id="sub_btn" />
