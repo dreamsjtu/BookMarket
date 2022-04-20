@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class Cart {
 
-  private int totalCount;
-  private BigDecimal totalPrice;
+  private int totalCount = 0;
+  private BigDecimal totalPrice = new BigDecimal(0);
   private Map<Integer,CartItem> items  = new HashMap<>();
   
   /**
@@ -16,13 +16,16 @@ public class Cart {
    */
   public void addItem(CartItem item) {
     CartItem c =  items.get(item.getId());
+    this.totalCount = this.totalCount+item.getCount();
+    this.totalPrice = this.totalPrice.add(item.getTotalPrice());
    if(c!=null) {
-     c.setCount(c.getCount()+1);
+     c.setCount(c.getCount()+item.getCount());
      c.setTotalPrice(c.getPrice().multiply(new BigDecimal(c.getCount())));
-     items.put(item.getId(),c );
    }else {
-     items.put(item.getId(), item);
+     c = item;
    }
+   items.put(item.getId(), c);
+   
   }
   
   /**
@@ -30,7 +33,11 @@ public class Cart {
    * @param id id of the item for adding to cart
    */
   public void deleteItem(int id) {
+    if(items.get(id)!=null) {
+    this.totalCount = this.totalCount-items.get(id).getCount();
+    this.totalPrice = this.totalPrice.subtract(items.get(id).getTotalPrice());
     items.remove(id);
+    }
   }
   
   /**
@@ -40,6 +47,10 @@ public class Cart {
    */
   public void updateCount(int id, int count) {
     CartItem c = items.get(id);
+    assert c!=null;
+    assert count>=0;
+    this.totalCount = this.totalCount+(count-c.getCount());
+    this.totalPrice = this.totalPrice.add((c.getPrice().multiply(new BigDecimal(count)).subtract(c.getTotalPrice())));
     if(c!=null) {
       c.setCount(count);
       c.setTotalPrice(c.getPrice().multiply(new BigDecimal(c.getCount())));
@@ -51,6 +62,8 @@ public class Cart {
    */
   public void clearCart() {
     items.clear();
+    this.totalCount = 0;
+    this.totalPrice = new BigDecimal(0);
   }
   public int getTotalCount() {
     return totalCount;
@@ -61,12 +74,6 @@ public class Cart {
   public Map<Integer, CartItem> getItems() {
     return items;
   }
-  public void setTotalCount(int totalCount) {
-    this.totalCount = totalCount;
-  }
-  public void setTotalPrice(BigDecimal totalPrice) {
-    this.totalPrice = totalPrice;
-  }
   public void setItems(Map<Integer, CartItem> items) {
     this.items = items;
   }
@@ -76,10 +83,14 @@ public class Cart {
         + "]";
   }
   public Cart(int totalCount, BigDecimal totalPrice, Map<Integer, CartItem> items) {
-    super();
+    
     this.totalCount = totalCount;
     this.totalPrice = totalPrice;
     this.items = items;
+  }
+
+  public Cart() {
+    super();
   }
   
 }

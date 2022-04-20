@@ -53,6 +53,8 @@ public class CartItem {
     this.totalPrice = totalPrice;
     this.count = count;
   }
-  
+  public CartItem() {
+    super();
+  }
   
 }
