@@ -59,4 +59,14 @@
     <servlet-name>ClientBookServlet</servlet-name>
     <url-pattern>/Client/ClientBookServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>KaptchaServlet</display-name>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/Kaptcha.jpg</url-pattern>
+  </servlet-mapping>
 </web-app>
