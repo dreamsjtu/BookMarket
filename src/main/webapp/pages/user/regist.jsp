@@ -9,10 +9,12 @@
 <script type="text/javascript">
 	// 页面加载完成之后
 	$(function() {
+			$("#codeImg").click(function(){
+				this.src = "${basePath}Kaptcha.jpg?id="+new Date();
+			});
 		// 给注册绑定单击事件
 		$("#sub_btn")
-				.click(
-						function() {
+				.click(function(){
 							// 验证用户名：必须由字母，数字下划线组成，并且长度为5到12位
 							//1 获取用户名输入框里的内容
 							var usernameText = $("#username").val();
@@ -80,9 +82,7 @@
 
 							// 去掉错误信息
 							$("span.errorMsg").text("");
-
-						});
-
+	});
 	});
 </script>
 <style type="text/css">
@@ -140,7 +140,7 @@
 							<br />
 							<label>验证码：</label>
 							<input class="itxt" type="text" name="code" style="width: 100px;"
-								id="code" value="${requestScope.code}" /> <img alt=""
+								id="code" value="${requestScope.code}" /> <img id="codeImg" alt=""
 								src="Kaptcha.jpg"
 								style="float: right; margin-right: 20px; width:120px">
 							<br />
