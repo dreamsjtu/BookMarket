@@ -141,7 +141,7 @@
 							<label>验证码：</label>
 							<input class="itxt" type="text" name="code" style="width: 150px;"
 								id="code" value="${requestScope.code}" /> <img alt=""
-								src="static/img/code.bmp"
+								src="Kaptcha.jpg"
 								style="float: right; margin-right: 40px">
 							<br />
 							<br />

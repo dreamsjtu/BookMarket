@@ -1,15 +1,13 @@
 package book.web;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
-import org.apache.commons.beanutils.BeanUtils;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+import com.google.code.kaptcha.*;
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
 import book.pojo.User;
 import book.service.impl.UserServiceImpl;
@@ -82,7 +80,7 @@ public class UserServlet extends BaseServlet {
 		//Create UserServiceImpl
 		UserServiceImpl userServiceImpl = new UserServiceImpl();
 		//Check if verification code correct
-		if(code.equalsIgnoreCase("abcde")) {
+		if(code.equalsIgnoreCase((String) request.getSession().getAttribute(KAPTCHA_SESSION_KEY))) {
 			//If Correct
 			//Check if username exist
 			if(userServiceImpl.existUsername(username)) {
