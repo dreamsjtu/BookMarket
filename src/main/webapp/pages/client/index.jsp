@@ -7,12 +7,15 @@
 <meta charset="UTF-8">
 <title>书城首页</title>
 <%@ include file="/pages/common/commonHeadContent.jsp"%>
-<script type = "text/javascript">
-	$(function(){
-		$(".addToCart").click(function(){
-			location.href = "${basePath}CartServlet?action=addItem&itemid="+$(this).attr("itemid");
-			System.out.println(location.href);
-		});
+<script type="text/javascript">
+	$(function() {
+		$(".addToCart")
+				.click(
+						function() {
+							location.href = "${basePath}CartServlet?action=addItem&itemid="
+									+ $(this).attr("itemid");
+							System.out.println(location.href);
+						});
 	});
 </script>
 </head>
@@ -41,18 +44,15 @@
 			<div class="book_cond">
 				<form action="Client/ClientBookServlet" method="get">
 					<input type="hidden" name="action" value="pageByPrice"}>
-					价格：
-					<input id="min" type="text" name="min" value=${param.min}>
-					元 -
-					<input id="max" type="text" name="max" value=${param.max}>
-					元
-					<input type="submit" value="查询" />
+					价格： <input id="min" type="text" name="min" value=${param.min}>
+					元 - <input id="max" type="text" name="max" value=${param.max}>
+					元 <input type="submit" value="查询" />
 				</form>
 			</div>
 			<div style="text-align: center">
 				<span>您的购物车中有3件商品</span>
 				<div>
-					您刚刚将<span style="color: red">时间简史</span>加入到了购物车中
+					您刚刚将<span style="color: red">${sessionScope.lastAddedItem}</span>加入到了购物车中
 				</div>
 			</div>
 			<c:forEach items="${requestScope.page.items}" var="book">
