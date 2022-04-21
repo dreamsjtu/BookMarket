@@ -59,7 +59,7 @@
     <servlet-name>ClientBookServlet</servlet-name>
     <url-pattern>/Client/ClientBookServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>KaptchaServlet</display-name>
     <servlet-name>KaptchaServlet</servlet-name>
@@ -68,5 +68,15 @@
   <servlet-mapping>
     <servlet-name>KaptchaServlet</servlet-name>
     <url-pattern>/Kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CartServlet</display-name>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>book.web.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/CartServlet</url-pattern>
   </servlet-mapping>
 </web-app>
