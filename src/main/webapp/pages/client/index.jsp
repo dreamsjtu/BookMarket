@@ -10,7 +10,8 @@
 <script type = "text/javascript">
 	$(function(){
 		$(".addToCart").click(function(){
-			alert("hi");
+			location.href = "${basePath}CartServlet?action=addItem&itemid="+$(this).attr("itemid");
+			System.out.println(location.href);
 		});
 	});
 </script>
@@ -76,7 +77,7 @@
 							<span class="sp1">库存:</span> <span class="sp2">${book.stock}</span>
 						</div>
 						<div class="book_add">
-							<button class="addToCart">加入购物车</button>
+							<button class="addToCart" itemid="${book.id}">加入购物车</button>
 						</div>
 					</div>
 				</div>
