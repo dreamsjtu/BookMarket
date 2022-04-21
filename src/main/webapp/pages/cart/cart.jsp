@@ -16,6 +16,17 @@ $(function(){
 	$("#clearCart").click(function(){
 		return confirm("Are you sure to clear the shopping cart?");
 	});
+	
+	$(".updateCount").change(function(){
+		var count = this.value;
+		var name = $(this).parent().parent().find("td:first").text();
+		var itemid = $(this).attr("itemid");
+		if(confirm("Are you sure to change item "+name+"'s quantity to "+count+" ?")){
+		location.href = "http://localhost:8080/BookMarket/CartServlet?action=updateCount&itemid="+itemid+"&count="+count;
+		}else{
+			this.value = this.defaultValue;
+		}
+	});
 });
 </script>
 </head>
@@ -38,7 +49,7 @@ $(function(){
 			<c:forEach items="${sessionScope.cart.items}" var="entry">
 			<tr>
 				<td>${entry.value.name}</td>
-				<td>${entry.value.count}</td>
+				<td><input class="updateCount" value="${entry.value.count}" style="width:30px;" itemid="${entry.value.id }"></td>
 				<td>${entry.value.price}</td>
 				<td>${entry.value.totalPrice}</td>
 				<td><a class="deleteItem" href="${basePath}CartServlet?action=deleteItem&itemid=${entry.value.id}">删除</a></td>
