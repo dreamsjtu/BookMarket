@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>购物车</title>
 <%@ include file="/pages/common/commonHeadContent.jsp"%>
+<script type="text/javascript">
+$(function(){
+	$("a.deleteItem").click(function(){
+		return confirm("Are you sure to delete "+$(this).parent().parent().find("td:first").text()+" ?");
+	});
+});
+</script>
 </head>
 <body>
 
@@ -30,7 +37,7 @@
 				<td>${entry.value.count}</td>
 				<td>${entry.value.price}</td>
 				<td>${entry.value.totalPrice}</td>
-				<td><a href="${basePath}CartServlet?action=deleteItem&itemid=${entry.value.id}">删除</a></td>
+				<td><a class="deleteItem" href="${basePath}CartServlet?action=deleteItem&itemid=${entry.value.id}">删除</a></td>
 			</tr>
 			</c:forEach>
 
