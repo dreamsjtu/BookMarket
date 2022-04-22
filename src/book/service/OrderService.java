@@ -18,6 +18,15 @@ public interface OrderService {
 
   /**
    * Show all the orders in database.
+   * @return 
    */
   public List<Order> showAllOrders();
+  
+  /**
+   * Send out the order.
+   *
+   * @param orderId
+   */
+  public void shipOrder(String orderId);
+  
 }

@@ -44,4 +44,9 @@ public class OrderServiceImpl implements OrderService {
     return orderDao.queryOrders();
   }
 
+  @Override
+  public void shipOrder(String orderId) {
+    orderDao.changeOrderStatus(orderId, 1);
+  }
+
 }
