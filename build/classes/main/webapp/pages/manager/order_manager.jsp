@@ -38,7 +38,6 @@
 					<c:if test="${order.status==2}">
 					<td><a href="#">Order received</a></td>
 					</c:if>
-					
 				</tr>
 			</c:forEach>
 		</table>

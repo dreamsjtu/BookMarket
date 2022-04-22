@@ -20,9 +20,9 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
   }
 
   @Override
-  public void changeOrderStatus(String orderid, int status) {
-    // TODO Auto-generated method stub
-    
+  public int changeOrderStatus(String orderId, int status) {
+    String sql = "update t_order set `status`=? where orderId=?";
+    return update(sql,status,orderId);
   }
 
   @Override

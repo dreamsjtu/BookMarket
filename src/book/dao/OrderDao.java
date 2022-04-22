@@ -26,14 +26,15 @@ public interface OrderDao {
    *
    * @param orderid
    * @param status
+   * @return 
    */
-  public void changeOrderStatus(String orderid, int status);
+  public int changeOrderStatus(String orderId, int status);
   
   /**
-   * Query the order in database by userid.
+   * Query the order in database by userId.
    *
    * @param userid
    * @return
    */
-  public Order queryOrderByUserid(Integer userid);
+  public Order queryOrderByUserid(Integer userId);
 }
