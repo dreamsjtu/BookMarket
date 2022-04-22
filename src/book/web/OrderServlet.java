@@ -22,6 +22,7 @@ public class OrderServlet extends BaseServlet {
     }
     int userid = user.getId();
     String orderid = orderService.createOrder(cart, userid);
+    cart.clearCart();
     request.getSession().setAttribute("orderid", orderid);
     response.sendRedirect(request.getContextPath()+"/pages/cart/checkout.jsp");
   }
