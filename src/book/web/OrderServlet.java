@@ -25,5 +25,10 @@ public class OrderServlet extends BaseServlet {
     request.getSession().setAttribute("orderid", orderid);
     response.sendRedirect(request.getContextPath()+"/pages/cart/checkout.jsp");
   }
+  
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    doPost(request,response);
+  }
 
 }
