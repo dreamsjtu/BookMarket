@@ -35,8 +35,10 @@ public class UserServlet extends BaseServlet {
     String password = request.getParameter("password");
     // Create a UserServiceImpl
     UserServiceImpl userServiceImpl = new UserServiceImpl();
+    //Create a user
+    User loginUser = userServiceImpl.login(new User(null, username, password, null));
     // Try login with username and password
-    if (userServiceImpl.login(new User(null, username, password, null)) != null) {
+    if (loginUser != null) {
       // If success
       // Save user's info in session
       request.getSession().setAttribute("username", username);
@@ -47,7 +49,7 @@ public class UserServlet extends BaseServlet {
       // If failed
       // Back to login page
       request.setAttribute("msg", "Wrong username or password");
-      request.setAttribute("username", username);
+      request.setAttribute("user", loginUser);
       request.getRequestDispatcher("pages/user/login.jsp").forward(request, response);
       System.out.println("Login failed");
     }
