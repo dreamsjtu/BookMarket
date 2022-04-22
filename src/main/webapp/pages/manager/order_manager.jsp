@@ -30,13 +30,13 @@
 					<td>${order.price}</td>
 					<td><a href="#">查看详情</a></td>
 					<c:if test="${order.status==0}">
-					<td><a href="#">Waiting for shipping</a></td>
+					<td><a href="${basePath}OrderServlet?action=shipOrder&orderId=${order.orderId}">Send out the order</a></td>
 					</c:if>
 					<c:if test="${order.status==1}">
-					<td><a href="#">Shipped</a></td>
+					<td>Shipped</td>
 					</c:if>
 					<c:if test="${order.status==2}">
-					<td><a href="#">Order received</a></td>
+					<td>Order received</td>
 					</c:if>
 				</tr>
 			</c:forEach>
