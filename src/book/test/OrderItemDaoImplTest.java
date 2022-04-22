@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 import book.dao.OrderItemDao;
+import book.dao.impl.OrderItemDaoImpl;
 import book.pojo.OrderItem;
 
 class OrderItemDaoImplTest {

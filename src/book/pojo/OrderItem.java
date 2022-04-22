@@ -3,7 +3,7 @@ package book.pojo;
 import java.math.BigDecimal;
 
 public class OrderItem {
-  private int id;
+  private Integer id;
   private int itemid;
   private String name;
   private BigDecimal price;
@@ -11,7 +11,7 @@ public class OrderItem {
   private int count;
   private String orderid;
 
-  public OrderItem(int id, int itemid, String name, BigDecimal price, BigDecimal totalPrice,
+  public OrderItem(Integer id, int itemid, String name, BigDecimal price, BigDecimal totalPrice,
       int count, String orderid) {
     super();
     this.id = id;
@@ -23,7 +23,7 @@ public class OrderItem {
     this.orderid = orderid;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 

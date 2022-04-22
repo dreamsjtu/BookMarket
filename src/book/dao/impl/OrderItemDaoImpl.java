@@ -1,7 +1,6 @@
-package book.test;
+package book.dao.impl;
 
 import book.dao.OrderItemDao;
-import book.dao.impl.BaseDao;
 import book.pojo.OrderItem;
 
 public class OrderItemDaoImpl extends BaseDao implements OrderItemDao{
