@@ -42,6 +42,8 @@ public class UserServlet extends BaseServlet {
       // If success
       // Save user's info in session
       request.getSession().setAttribute("user", loginUser);
+      // Save username in request
+      request.setAttribute("username", username);
       // Go to login_success page
       request.getRequestDispatcher("pages/user/login_success.jsp").forward(request, response);
       System.out.println("Login successfully");
@@ -49,6 +51,7 @@ public class UserServlet extends BaseServlet {
       // If failed
       // Back to login page
       request.setAttribute("msg", "Wrong username or password");
+      request.setAttribute("username", username);
       request.getRequestDispatcher("pages/user/login.jsp").forward(request, response);
       System.out.println("Login failed");
     }

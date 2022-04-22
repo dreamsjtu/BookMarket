@@ -25,12 +25,12 @@
 		<img class="logo_img" alt="" src="static/img/logo.gif"> <span
 			class="wel_word">网上书城</span>
 		<div>
-			<c:if test="${empty sessionScope.username}">
+			<c:if test="${empty sessionScope.user.username}">
 				<a href="pages/user/login.jsp">登录</a> | <a
 					href="pages/user/regist.jsp">注册</a>
 			</c:if>
-			<c:if test="${not empty sessionScope.username}">
-				<span>欢迎<span class="um_span">${sessionScope.username}</span>光临尚硅谷书城
+			<c:if test="${not empty sessionScope.user.username}">
+				<span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临尚硅谷书城
 				</span>
 				<a href="pages/order/order.jsp">我的订单</a>
 				<a href="UserServlet?action=logout">注销</a>
