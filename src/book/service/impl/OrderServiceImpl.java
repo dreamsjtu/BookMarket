@@ -8,6 +8,7 @@ import book.dao.OrderItemDao;
 import book.dao.impl.BookDaoImpl;
 import book.dao.impl.OrderDaoImpl;
 import book.dao.impl.OrderItemDaoImpl;
+import book.pojo.Book;
 import book.pojo.Cart;
 import book.pojo.CartItem;
 import book.pojo.Order;
@@ -29,6 +30,10 @@ public class OrderServiceImpl implements OrderService {
       OrderItem orderItem = new OrderItem(null, ci.getId(), ci.getName(), ci.getPrice(),
           ci.getTotalPrice(), ci.getCount(), orderid);
       orderItemDao.saveOrderItem(orderItem);
+      Book book = bookDao.queryBookById(ci.getId());
+      book.setSales(book.getSales()+ci.getCount());
+      book.setStock(book.getStock()-ci.getCount());
+      bookDao.updateBook(book);
     }
     return orderid;
   }
