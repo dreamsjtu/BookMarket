@@ -8,6 +8,7 @@ public interface OrderItemDao {
    * This method will save the orderItem into database.
    *
    * @param orderItem
+   * @return 
    */
-  public void saveOrderItem(OrderItem orderItem);
+  public int saveOrderItem(OrderItem orderItem);
 }
