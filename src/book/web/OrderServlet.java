@@ -38,5 +38,6 @@ public class OrderServlet extends BaseServlet {
   protected void showAllOrders(HttpServletRequest request, HttpServletResponse response) {
     List<Order> allOrders = orderService.showAllOrders();
     request.setAttribute("allOrders", allOrders);
+    request.getRequestDispatcher(request.getContextPath()+"/pages/manager/order_manager.jsp");
   }
 }
