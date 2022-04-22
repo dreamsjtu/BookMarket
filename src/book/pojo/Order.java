@@ -6,11 +6,16 @@ import java.util.Date;
 public class Order {
   private String orderId;
   private Date createDate;
-  private int userId;
+  private Integer userId;
   private BigDecimal price;
-  private int status;
+  private Integer status;
 
-  public Order(String orderId, Date createDate, int userId, BigDecimal price, int status) {
+  
+  public Order() {
+    super();
+  }
+
+  public Order(String orderId, Date createDate, Integer userId, BigDecimal price, Integer status) {
     super();
     this.orderId = orderId;
     this.createDate = createDate;
@@ -27,7 +32,7 @@ public class Order {
     return createDate;
   }
 
-  public int getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
@@ -35,7 +40,7 @@ public class Order {
     return price;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
@@ -47,7 +52,7 @@ public class Order {
     this.createDate = createDate;
   }
 
-  public void setUserId(int userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
@@ -55,7 +60,7 @@ public class Order {
     this.price = price;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 
