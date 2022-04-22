@@ -6,6 +6,7 @@ public interface OrderDao {
   /**
    * This method will save the order into database.
    * @param order
+   * @return 
    */
-  public void saveOrder(Order order);
+  public int saveOrder(Order order);
 }
