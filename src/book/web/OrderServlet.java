@@ -35,9 +35,9 @@ public class OrderServlet extends BaseServlet {
     response.sendRedirect(request.getContextPath()+"/pages/cart/checkout.jsp");
   }
   
-  protected void showAllOrders(HttpServletRequest request, HttpServletResponse response) {
+  protected void showAllOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     List<Order> allOrders = orderService.showAllOrders();
     request.setAttribute("allOrders", allOrders);
-    request.getRequestDispatcher(request.getContextPath()+"/pages/manager/order_manager.jsp");
+    request.getRequestDispatcher("/pages/manager/order_manager.jsp").forward(request, response);
   }
 }
