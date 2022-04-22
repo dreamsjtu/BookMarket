@@ -11,6 +11,11 @@ public class OrderItem {
   private int count;
   private String orderid;
 
+  
+  public OrderItem() {
+    super();
+  }
+
   public OrderItem(Integer id, int itemid, String name, BigDecimal price, BigDecimal totalPrice,
       int count, String orderid) {
     super();
