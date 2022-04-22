@@ -1,6 +1,7 @@
 package book.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import book.dao.BookDao;
 import book.dao.OrderDao;
@@ -36,6 +37,11 @@ public class OrderServiceImpl implements OrderService {
       bookDao.updateBook(book);
     }
     return orderid;
+  }
+
+  @Override
+  public List<Order> showAllOrders() {
+    return orderDao.queryOrders();
   }
 
 }
