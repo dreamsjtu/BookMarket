@@ -28,7 +28,7 @@
 				<tr>
 					<td>${order.createDate}</td>
 					<td>${order.price}</td>
-					<td><a href="#">查看详情</a></td>
+					<td><a href="${basePath}OrderServlet?action=showOrderDetails&orderId=${order.orderId}">Check details</a></td>
 					<c:if test="${order.status==0}">
 					<td><a href="${basePath}OrderServlet?action=shipOrder&orderId=${order.orderId}">Send out the order</a></td>
 					</c:if>

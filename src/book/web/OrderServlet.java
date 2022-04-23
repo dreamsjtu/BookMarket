@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import book.pojo.Cart;
 import book.pojo.Order;
+import book.pojo.OrderItem;
 import book.pojo.User;
 import book.service.OrderService;
 import book.service.impl.OrderServiceImpl;
@@ -45,5 +46,11 @@ public class OrderServlet extends BaseServlet {
     String orderId = (String) request.getParameter("orderId");
     orderService.shipOrder(orderId);
     response.sendRedirect(request.getHeader("referer"));
+  }
+  
+  protected void showOrderDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String orderId = (String) request.getParameter("orderId");
+    request.setAttribute("orderItems", orderService.showOrderDetails(orderId));
+    request.getRequestDispatcher("/pages/order/order_details.jsp").forward(request, response);
   }
 }
