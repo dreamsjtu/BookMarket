@@ -18,7 +18,7 @@ h1 {
 
 	<div id="header">
 		<img class="logo_img" alt="" src="../../static/img/logo.gif"> <span
-			class="wel_word">My orders</span>
+			class="wel_word">MyOrders</span>
 		<%@ include file = "/pages/common/commonUserMenu.jsp"%>
 	</div>
 
@@ -26,16 +26,28 @@ h1 {
 
 		<table>
 			<tr>
-				<td>Date and time</td>
+				<td>PurchaseDate</td>
 				<td>Price</td>
 				<td>Status</td>
+				<td>Action</td>
 				<td>Details</td>
 			</tr>
 			<c:forEach items="${requestScope.myOrders}" var="order">
 			<tr>
 				<td>${order.createDate}</td>
 				<td>${order.price}</td>
-				<td>${order.status}</td>
+				<c:if test="${order.status==0}">
+					<td>ProcessingOrder</td>
+					<td></td>
+					</c:if>
+					<c:if test="${order.status==1}">
+					<td>Shipped</td>
+					<td><a href="${basePath}OrderServlet?action=shipOrder&orderId=${order.orderId}">order received</a></td>
+					</c:if>
+					<c:if test="${order.status==2}">
+					<td>Completed</td>
+					<td></td>
+					</c:if>
 				<td><a href="${basePath}OrderServlet?action=showOrderDetails&orderId=${order.orderId}">Check details</a></td>
 			</tr>
 			</c:forEach>

@@ -36,7 +36,7 @@
 					<td>Shipped</td>
 					</c:if>
 					<c:if test="${order.status==2}">
-					<td>Order received</td>
+					<td>Completed</td>
 					</c:if>
 				</tr>
 			</c:forEach>
