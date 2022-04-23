@@ -80,7 +80,7 @@
 			</span> <span class="cart_span">总金额<span class="b_price">${sessionScope.cart.totalPrice}</span>元
 			</span> <span class="cart_span"><a id="clearCart"
 				href="${basePath}CartServlet?action=clearCart">清空购物车</a></span> <span
-				class="cart_span"><a href="pages/cart/checkout.jsp">去结账</a></span>
+				class="cart_span"><a href="${basePath}OrderServlet?action=createOrder">去结账</a></span>
 		</div>
 		</c:if>
 	</div>

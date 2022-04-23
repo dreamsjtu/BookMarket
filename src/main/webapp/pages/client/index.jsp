@@ -23,20 +23,20 @@
 
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif"> <span
-			class="wel_word">网上书城</span>
+			class="wel_word">Online book market</span>
 		<div>
-			<c:if test="${empty sessionScope.username}">
-				<a href="pages/user/login.jsp">登录</a> | <a
-					href="pages/user/regist.jsp">注册</a>
+			<c:if test="${empty sessionScope.user.username}">
+				<a href="pages/user/login.jsp">Login</a> | <a
+					href="pages/user/regist.jsp">Register</a>
 			</c:if>
-			<c:if test="${not empty sessionScope.username}">
-				<span>欢迎<span class="um_span">${sessionScope.username}</span>光临尚硅谷书城
+			<c:if test="${not empty sessionScope.user.username}">
+				<span>Welcome<span class="um_span">${sessionScope.user.username}</span>to online book market
 				</span>
-				<a href="pages/order/order.jsp">我的订单</a>
-				<a href="UserServlet?action=logout">注销</a>
+				<a href="${basePath}OrderServlet?action=showMyOrders">MyOrders</a>
+				 <a href="UserServlet?action=logout">LogOut</a>
 			</c:if>
-			&nbsp;&nbsp; <a href="pages/cart/cart.jsp">购物车</a> <a
-				href="pages/manager/manager.jsp">后台管理</a>
+			&nbsp;&nbsp; <a href="pages/cart/cart.jsp">ShoppingCart</a> <a
+				href="pages/manager/manager.jsp">Backstage-management</a>
 		</div>
 	</div>
 	<div id="main">
