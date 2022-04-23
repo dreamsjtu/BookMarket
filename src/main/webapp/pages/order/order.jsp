@@ -42,7 +42,7 @@ h1 {
 					</c:if>
 					<c:if test="${order.status==1}">
 					<td>Shipped</td>
-					<td><a href="${basePath}OrderServlet?action=shipOrder&orderId=${order.orderId}">order received</a></td>
+					<td><a href="${basePath}OrderServlet?action=receiveOrder&orderId=${order.orderId}">order received</a></td>
 					</c:if>
 					<c:if test="${order.status==2}">
 					<td>Completed</td>
