@@ -48,10 +48,5 @@ public class JdbcUtils {
 		}
 		return conn;
 	}
-	
-	//for testing
-//	public static void main(String[] args) {
-//		
-//	}
 
 }
