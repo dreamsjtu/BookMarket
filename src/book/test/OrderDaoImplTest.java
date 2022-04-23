@@ -35,7 +35,7 @@ class OrderDaoImplTest {
   }
 
   @Test
-  void testQueryOrderByUserid() {
-
+  void testQueryOrdersByUserId() {
+    System.out.println(od.queryOrdersByUserId(1));
   }
 }

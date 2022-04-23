@@ -26,9 +26,9 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
   }
 
   @Override
-  public Order queryOrderByUserid(Integer userid) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Order> queryOrdersByUserId(Integer userId) {
+    String sql = "select `orderId`,`createDate`,`userId`,`price`,`status` from t_order where userId=?";
+    return queryForList(Order.class,sql,userId);
   }
 
 }

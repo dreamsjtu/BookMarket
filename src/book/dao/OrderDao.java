@@ -36,5 +36,5 @@ public interface OrderDao {
    * @param userid
    * @return
    */
-  public Order queryOrderByUserid(Integer userId);
+  public List<Order> queryOrdersByUserId(Integer userId);
 }
