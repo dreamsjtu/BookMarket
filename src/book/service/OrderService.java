@@ -4,6 +4,7 @@ import java.util.List;
 
 import book.pojo.Cart;
 import book.pojo.Order;
+import book.pojo.OrderItem;
 
 public interface OrderService {
   /**
@@ -28,5 +29,12 @@ public interface OrderService {
    * @param orderId
    */
   public void shipOrder(String orderId);
+
+  /**
+   * Show the order items of each order.
+   *
+   * @return a list of the orderItems
+   */
+  public List<OrderItem> showOrderDetails(String orderId);
   
 }

@@ -32,8 +32,8 @@ public class OrderServiceImpl implements OrderService {
           ci.getTotalPrice(), ci.getCount(), orderid);
       orderItemDao.saveOrderItem(orderItem);
       Book book = bookDao.queryBookById(ci.getId());
-      book.setSales(book.getSales()+ci.getCount());
-      book.setStock(book.getStock()-ci.getCount());
+      book.setSales(book.getSales() + ci.getCount());
+      book.setStock(book.getStock() - ci.getCount());
       bookDao.updateBook(book);
     }
     return orderid;
@@ -47,6 +47,11 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public void shipOrder(String orderId) {
     orderDao.changeOrderStatus(orderId, 1);
+  }
+
+  @Override
+  public List<OrderItem> showOrderDetails(String orderId) {
+    return orderItemDao.queryOrderItemsByOrderId(orderId);
   }
 
 }

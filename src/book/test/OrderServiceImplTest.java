@@ -38,4 +38,9 @@ class OrderServiceImplTest {
     String orderId = os.createOrder(cart, 1);
     os.shipOrder(orderId);
   }
+  
+  @Test
+  void testShowOrderDetails() {
+    System.out.println(os.showOrderDetails("test2"));
+  }
 }
