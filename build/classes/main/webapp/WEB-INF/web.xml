@@ -97,6 +97,6 @@
     <filter-mapping>
         <filter-name>ManagerFilter</filter-name>
         <url-pattern>/pages/manager/*</url-pattern>
-        <url-pattern>/manager/bookService</url-pattern>
+        <url-pattern>/manager/BookService</url-pattern>
     </filter-mapping>
 </web-app>
