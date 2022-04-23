@@ -55,7 +55,8 @@ public class OrderServlet extends BaseServlet {
   }
   
   protected void showMyOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    Integer userId = Integer. valueOf(request.getParameter("userId"));
+    User user = (User) request.getSession().getAttribute("user");
+    Integer userId = user.getId();
     List<Order> myOrders = orderService.showMyOrders(userId);
     request.setAttribute("myOrders", myOrders);
     request.getRequestDispatcher("/pages/order/order.jsp").forward(request, response);

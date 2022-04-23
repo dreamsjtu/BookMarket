@@ -13,7 +13,12 @@
 	<div id="header">
 		<img class="logo_img" alt="" src="static/img/logo.gif"> <span
 			class="wel_word">Order Details</span>
+		<c:if test="${sessionScope.user.username == 'admin' }">
 		<%@ include file="/pages/common/commonManageMenu.jsp"%>
+		</c:if>
+		<c:if test="${sessionScope.user.username != 'admin' }">
+		<%@ include file = "/pages/common/commonUserMenu.jsp"%>
+		</c:if>
 	</div>
 	<div id="main">
 		<table>

@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div>
-		<span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临尚硅谷书城
-		</span> <a href="pages/order/order.jsp">我的订单</a> <a href="UserServlet?action=logout">注销</a>&nbsp;&nbsp;
-		<a href="index.jsp">返回</a>
+		<span>Welcome<span class="um_span">${sessionScope.user.username}</span> to online bookmarket
+		</span> <a href="${basePath}OrderServlet?action=showMyOrders">My orders</a> <a href="UserServlet?action=logout">Log out</a>&nbsp;&nbsp;
+		<a href="index.jsp">Back</a>
 	</div>
 </body>
 </html>

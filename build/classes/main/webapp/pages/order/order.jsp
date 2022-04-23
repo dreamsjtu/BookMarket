@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ h1 {
 
 	<div id="header">
 		<img class="logo_img" alt="" src="../../static/img/logo.gif"> <span
-			class="wel_word">我的订单</span>
+			class="wel_word">My orders</span>
 		<%@ include file = "/pages/common/commonUserMenu.jsp"%>
 	</div>
 
@@ -25,31 +26,19 @@ h1 {
 
 		<table>
 			<tr>
-				<td>日期</td>
-				<td>金额</td>
-				<td>状态</td>
-				<td>详情</td>
+				<td>Date and time</td>
+				<td>Price</td>
+				<td>Status</td>
+				<td>Details</td>
 			</tr>
+			<c:forEach items="${requestScope.myOrders}" var="order">
 			<tr>
-				<td>2015.04.23</td>
-				<td>90.00</td>
-				<td>未发货</td>
-				<td><a href="#">查看详情</a></td>
+				<td>${order.createDate}</td>
+				<td>${order.price}</td>
+				<td>${order.status}</td>
+				<td><a href="${basePath}OrderServlet?action=showOrderDetails&orderId=${order.orderId}">Check details</a></td>
 			</tr>
-
-			<tr>
-				<td>2015.04.20</td>
-				<td>20.00</td>
-				<td>已发货</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>
-
-			<tr>
-				<td>2014.01.23</td>
-				<td>190.00</td>
-				<td>已完成</td>
-				<td><a href="#">查看详情</a></td>
-			</tr>
+			</c:forEach>
 		</table>
 
 
