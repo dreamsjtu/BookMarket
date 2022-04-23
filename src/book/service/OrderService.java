@@ -44,4 +44,11 @@ public interface OrderService {
    */
   public List<Order> showMyOrders(Integer userId);
   
+  /**
+   * User confirm that order received.
+   *
+   * @param orderId
+   */
+  public void receiveOrder(String orderId);
+  
 }
