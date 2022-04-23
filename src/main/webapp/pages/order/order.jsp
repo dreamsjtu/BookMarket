@@ -52,8 +52,6 @@ h1 {
 			</tr>
 			</c:forEach>
 		</table>
-
-
 	</div>
 
 	<%@ include file = "/pages/common/commonFooter.jsp"%>
