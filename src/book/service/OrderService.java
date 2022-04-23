@@ -36,5 +36,12 @@ public interface OrderService {
    * @return a list of the orderItems
    */
   public List<OrderItem> showOrderDetails(String orderId);
+
+  /**
+   * Show all the order of current user.
+   * @param userId
+   * @return
+   */
+  public List<Order> showMyOrders(Integer userId);
   
 }

@@ -53,4 +53,11 @@ public class OrderServlet extends BaseServlet {
     request.setAttribute("orderItems", orderService.showOrderDetails(orderId));
     request.getRequestDispatcher("/pages/order/order_details.jsp").forward(request, response);
   }
+  
+  protected void showMyOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Integer userId = Integer. valueOf(request.getParameter("userId"));
+    List<Order> myOrders = orderService.showMyOrders(userId);
+    request.setAttribute("myOrders", myOrders);
+    request.getRequestDispatcher("/pages/order/order.jsp").forward(request, response);
+  }
 }

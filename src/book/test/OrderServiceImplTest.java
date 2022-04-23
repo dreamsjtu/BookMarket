@@ -43,4 +43,9 @@ class OrderServiceImplTest {
   void testShowOrderDetails() {
     System.out.println(os.showOrderDetails("test2"));
   }
+  
+  @Test
+  void testShowMyOrders() {
+    System.out.println(os.showMyOrders(1));
+  }
 }

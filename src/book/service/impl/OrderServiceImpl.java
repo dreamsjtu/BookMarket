@@ -53,5 +53,10 @@ public class OrderServiceImpl implements OrderService {
   public List<OrderItem> showOrderDetails(String orderId) {
     return orderItemDao.queryOrderItemsByOrderId(orderId);
   }
+  
+  @Override
+  public List<Order> showMyOrders(Integer userId){
+    return orderDao.queryOrdersByUserId(userId);
+  }
 
 }
