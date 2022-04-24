@@ -69,6 +69,7 @@ public class JdbcUtils {
         }
       }
 	  }
+	  conns.remove();
 	}
 	/**
 	 * Rollback the transaction and close the connection.
@@ -88,6 +89,7 @@ public class JdbcUtils {
         }
       }
     }
+    conns.remove();
   }
 
 }
