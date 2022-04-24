@@ -26,8 +26,8 @@ public abstract class BaseDao {
 			return queryRunner.update(conn,sql,args);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return -1;
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public abstract class BaseDao {
 			return queryRunner.query(conn, sql, new BeanHandler<T>(type), args);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 	
 	/**
@@ -62,8 +62,8 @@ public abstract class BaseDao {
 			return queryRunner.query(conn, sql, new BeanListHandler<T>(type), args);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 	
 	/**
@@ -78,8 +78,8 @@ public abstract class BaseDao {
 			return queryRunner.query(conn, sql, new ScalarHandler(), args);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 }
