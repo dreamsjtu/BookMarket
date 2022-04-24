@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     String orderid = new Date() + "" + userid;
     Order order = new Order(orderid, new Date(), userid, cart.getTotalPrice(), 0);
     orderDao.saveOrder(order);
-//    int num = 1/0;
+    int num = 1/0;
     for (CartItem ci : cart.getItems().values()) {
       OrderItem orderItem = new OrderItem(null, ci.getId(), ci.getName(), ci.getPrice(),
           ci.getTotalPrice(), ci.getCount(), orderid);

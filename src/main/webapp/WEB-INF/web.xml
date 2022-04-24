@@ -102,7 +102,7 @@
 		<url-pattern>/pages/manager/*</url-pattern>
 		<url-pattern>/manager/BookService</url-pattern>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>TransactionFilter</filter-name>
 		<filter-class>book.filter.TransactionFilter</filter-class>
@@ -111,4 +111,14 @@
 		<filter-name>TransactionFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/pages/error/Error500.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pages/error/Error404.jsp</location>
+	</error-page>
 </web-app>
