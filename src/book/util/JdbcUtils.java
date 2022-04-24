@@ -70,7 +70,9 @@ public class JdbcUtils {
       }
 	  }
 	}
-	
+	/**
+	 * Rollback the transaction and close the connection.
+	 */
 	public static void rollbackAndClose(){
     Connection conn = conns.get();
     if(conn!=null) {

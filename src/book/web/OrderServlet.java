@@ -13,6 +13,7 @@ import book.pojo.OrderItem;
 import book.pojo.User;
 import book.service.OrderService;
 import book.service.impl.OrderServiceImpl;
+import book.util.JdbcUtils;
 
 public class OrderServlet extends BaseServlet {
   private OrderService orderService = new OrderServiceImpl();
@@ -30,7 +31,15 @@ public class OrderServlet extends BaseServlet {
       return;
     }
     int userid = user.getId();
-    String orderid = orderService.createOrder(cart, userid);
+    String orderid = null;
+    try {
+      orderid = orderService.createOrder(cart, userid);
+      JdbcUtils.commitAndClose();
+    } catch (Exception e) {
+      JdbcUtils.rollbackAndClose();
+      e.printStackTrace();
+      return;
+    }
     cart.clearCart();
     request.getSession().setAttribute("orderid", orderid);
     response.sendRedirect(request.getContextPath()+"/pages/cart/checkout.jsp");
