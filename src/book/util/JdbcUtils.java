@@ -48,5 +48,44 @@ public class JdbcUtils {
 		}
 		return conn;
 	}
+	
+	/**
+	 * Commit the transaction and close the connection.
+	 */
+	public static void commitAndClose() {
+	  Connection conn = conns.get();
+	  if(conn!=null) {
+	    try {
+        conn.commit();
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } finally{
+        try {
+          conn.close();
+        } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+	  }
+	}
+	
+	public static void rollbackAndClose(){
+    Connection conn = conns.get();
+    if(conn!=null) {
+      try {
+        conn.rollback();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally{
+        try {
+          conn.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
 
 }
