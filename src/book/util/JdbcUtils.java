@@ -11,6 +11,7 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 public class JdbcUtils {
 
 	private static DruidDataSource dataSource;
+	private static ThreadLocal<Connection> conns = new ThreadLocal<>();
 
 	static {
 		try {
@@ -35,33 +36,60 @@ public class JdbcUtils {
 	 * @return a connection
 	 */
 	public static Connection getConnection() {
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		Connection conn = conns.get();
+		if(conn==null) {
+		  try {
+        conn = dataSource.getConnection();
+        conns.set(conn);
+        conn.setAutoCommit(false);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
 		}
 		return conn;
 	}
-
-	/**
-	 * Close the connection
-	 */
-	public static void close(Connection conn) {
-		if(conn!=null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
 	
-	//for testing
-//	public static void main(String[] args) {
-//		
-//	}
+	/**
+	 * Commit the transaction and close the connection.
+	 */
+	public static void commitAndClose() {
+	  Connection conn = conns.get();
+	  if(conn!=null) {
+	    try {
+        conn.commit();
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } finally{
+        try {
+          conn.close();
+        } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+	  }
+	  conns.remove();
+	}
+	/**
+	 * Rollback the transaction and close the connection.
+	 */
+	public static void rollbackAndClose(){
+    Connection conn = conns.get();
+    if(conn!=null) {
+      try {
+        conn.rollback();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally{
+        try {
+          conn.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    conns.remove();
+  }
 
 }
