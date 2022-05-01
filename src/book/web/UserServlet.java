@@ -1,13 +1,16 @@
 package book.web;
 
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
+
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
-import com.google.code.kaptcha.*;
-import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
+
+import com.google.gson.Gson;
 
 import book.pojo.User;
 import book.service.impl.UserServiceImpl;
@@ -134,5 +137,16 @@ public class UserServlet extends BaseServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     doPost(request, response);
+  }
+  
+  protected void checkUsername(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String username = request.getParameter("username");
+    UserServiceImpl userServiceImpl = new UserServiceImpl();
+    Boolean existsUsername = userServiceImpl.existUsername(username);
+    Map<String,Boolean> responseMap = new HashMap<String, Boolean>();
+    responseMap.put("existsUsername", existsUsername);
+    Gson gson = new Gson();
+    String jsonString = gson.toJson(responseMap);
+    response.getWriter().write(jsonString);
   }
 }
