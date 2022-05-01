@@ -30,10 +30,11 @@
 					href="pages/user/regist.jsp">Register</a>
 			</c:if>
 			<c:if test="${not empty sessionScope.user.username}">
-				<span>Welcome<span class="um_span">${sessionScope.user.username}</span>to online book market
+				<span>Welcome<span class="um_span">${sessionScope.user.username}</span>to
+					online book market
 				</span>
 				<a href="${basePath}OrderServlet?action=showMyOrders">MyOrders</a>
-				 <a href="UserServlet?action=logout">LogOut</a>
+				<a href="UserServlet?action=logout">LogOut</a>
 			</c:if>
 			&nbsp;&nbsp; <a href="pages/cart/cart.jsp">ShoppingCart</a> <a
 				href="pages/manager/manager.jsp">Backstage-management</a>

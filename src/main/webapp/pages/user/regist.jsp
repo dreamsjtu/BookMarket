@@ -15,7 +15,7 @@
 		//Use ajax to check if username already exist once cursor out of username field
 		$("#username").blur(
 				function() {
-					$.getJSON("http://localhost:8080/BookMarket/UserServlet",
+					$.getJSON("${basePath}UserServlet",
 							"action=checkUsername&username=" + this.value,
 							function(data) {
 								if (data.existsUsername) {
