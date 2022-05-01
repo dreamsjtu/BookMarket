@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public String createOrder(Cart cart, int userid) {
-    String orderid = new Date() + "" + userid;
+    String orderid = System.currentTimeMillis() + "" + userid;
     Order order = new Order(orderid, new Date(), userid, cart.getTotalPrice(), 0);
     orderDao.saveOrder(order);
     for (CartItem ci : cart.getItems().values()) {
