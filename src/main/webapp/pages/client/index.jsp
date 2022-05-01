@@ -9,13 +9,21 @@
 <%@ include file="/pages/common/commonHeadContent.jsp"%>
 <script type="text/javascript">
 	$(function() {
-		$(".addToCart")
-				.click(
-						function() {
-							location.href = "${basePath}CartServlet?action=addItem&itemid="
-									+ $(this).attr("itemid");
-							System.out.println(location.href);
-						});
+		$(".addToCart").click(
+				function() {
+					$.getJSON("${basePath}CartServlet",
+							"action=ajaxAddItem&itemid="
+									+ $(this).attr("itemid"), function(data) {
+						if(data.noOfItems>1){
+								$("#noOfItems").text(
+										"You have " + data.noOfItems + " items in cart");
+						}else{
+							$("#noOfItems").text(
+									"You have " + data.noOfItems + " item in cart");
+						}
+								$("#lastAddedItem").html('You just add \'<span style="color: red">'+data.lastAddedItem+'</span>\' to shopping cart');
+							})
+				});
 	});
 </script>
 </head>
@@ -52,15 +60,15 @@
 			</div>
 			<div style="text-align: center">
 				<c:if test="${empty sessionScope.cart.items}">
-					<span> </span>
+					<span id="noOfItems"> </span>
 					<div>
-						<span style="color: red">当前购物车为空</span>
+						<span style="color: red" id="lastAddedItem">当前购物车为空</span>
 					</div>
 				</c:if>
 				<c:if test="${not empty sessionScope.cart.items}">
-					<span>您的购物车中有${sessionScope.cart.totalCount}件商品</span>
-					<div>
-						您刚刚将<span style="color: red">${sessionScope.lastAddedItem}</span>加入到了购物车中
+					<span id="noOfItems"></span>
+					<div id="lastAddedItem">
+						您刚刚将<span style="color: red"></span>加入到了购物车中
 					</div>
 				</c:if>
 			</div>

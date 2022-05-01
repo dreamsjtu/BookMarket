@@ -14,7 +14,9 @@ public abstract class BaseServlet extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+	  request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html; charset=UTF-8");
+	  String action = request.getParameter("action");
 			try {
 				//Get the related method of the action.
 				Method method = this.getClass().getDeclaredMethod(action,HttpServletRequest.class, HttpServletResponse.class);

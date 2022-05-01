@@ -1,12 +1,14 @@
 package book.web;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import book.pojo.Book;
 import book.pojo.Cart;
@@ -49,6 +51,36 @@ public class CartServlet extends BaseServlet {
     request.getSession().setAttribute("lastAddedItem", book.getName());
     //redirect to the page it comes from
     response.sendRedirect(request.getHeader("referer"));
+  }
+  
+  /**
+   * Get the cart from session and add item to it, use ajax
+   * @param item
+   * @throws IOException 
+   */
+  protected void ajaxAddItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //Get the shopping cart from session
+    Cart cart = (Cart) request.getSession().getAttribute("cart");
+    //If cart is null, create a new cart and add the cart to session.
+    if(cart==null) {
+      cart = new Cart();
+      request.getSession().setAttribute("cart", cart);
+    }
+    //Get the item id
+    int itemid = WebUtils.parseInt(request.getParameter("itemid"), -1);
+    //Create the cartitem
+    BookService bs =  new BookServiceImpl();
+    Book book = bs.queryBookById(itemid);
+    //add item to cart
+    cart.addItem(new CartItem(book.getId(),book.getName(),book.getPrice(),book.getPrice(),1));
+    //Add a lastAddedItem attribute to session.
+    request.getSession().setAttribute("lastAddedItem", book.getName());
+    //send the ajax response
+    Gson gson = new Gson();
+    Map<String,String> ajaxMap = new HashMap<>();
+    ajaxMap.put("lastAddedItem",book.getName());
+    ajaxMap.put("noOfItems", cart.getTotalCount()+"");
+    response.getWriter().write(gson.toJson(ajaxMap));
   }
   
   /**
