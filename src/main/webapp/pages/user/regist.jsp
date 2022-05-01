@@ -13,15 +13,20 @@
 			this.src = "${basePath}Kaptcha.jpg?id=" + new Date();
 		});
 		//Use ajax to check if username already exist once cursor out of username field
-		$("#username").blur(function(){
-			$.getJSON("http://localhost:8080/BookMarket/UserServlet","action=checkUsername&username="+this.value,function(data){
-				if(data.existsUsername){
-				$("span.errorMsg").text("Username already exists");
-				}else{
-					$("span.errorMsg").text("Username is valid");
-				}
-			});
-		});
+		$("#username").blur(
+				function() {
+					$.getJSON("${basePath}UserServlet",
+							"action=checkUsername&username=" + this.value,
+							function(data) {
+								if (data.existsUsername) {
+									$("span.errorMsg").text(
+											"Username already exists");
+								} else {
+									$("span.errorMsg")
+											.text("Username is valid");
+								}
+							});
+				});
 		// 给注册绑定单击事件
 		$("#sub_btn")
 				.click(
