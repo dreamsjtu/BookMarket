@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 </head>
 <body>
 	<div id="bottom">
-		<span> 尚硅谷书城.Copyright &copy;2015 </span>
+		<span><fmt:message key="ONLINE_BOOK_MARKET"></fmt:message></span>
 	</div>
 </body>
 </html>
